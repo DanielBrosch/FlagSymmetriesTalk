@@ -1,0 +1,179 @@
+\usepackage{xcolor}
+
+% Switch implementation https://tex.stackexchange.com/questions/64131/implementing-switch-cases
+\usepackage{xifthen}
+\newcommand{\ifequals}[3]{\ifthenelse{\equal{#1}{#2}}{#3}{}}
+\newcommand{\case}[2]{#1 #2} % Dummy, so \renewcommand has something to overwrite...
+\newenvironment{switch}[1]{\renewcommand{\case}{\ifequals{#1}}}{}
+
+\usepackage[charter, cal=cmcal]{mathdesign}
+\usepackage{mathtools,amsthm,booktabs,thmtools}
+\usepackage{threeparttable}
+\usepackage{numprint}
+\usepackage{float} 
+\usepackage{array}
+
+\usepackage{xfrac}
+
+
+
+\usepackage{ytableau}
+
+% \usepackage{longtable} % Split table over multiple pages; Flexible width column: tabularx
+%\usepackage{ltablex} % Splitting of tables over multiple pages (longtable does not work with the X column)
+
+%\allowdisplaybreaks % Allow breaking of align* over page breaks
+
+% \usepackage[charter, cal=cmcal]{mathdesign} % Charter font with standard \mathcal
+% \usepackage[charter]{mathdesign} % Charter font with standard \mathcal
+% \usepackage{XCharter}
+
+% \usepackage[garamond]{mathdesign}
+
+%\renewcommand{\baselinestretch}{1.125} % Increase the distance between lines of text
+% \renewcommand{\baselinestretch}{1.11} % Increase the distance between lines of text
+
+% \usepackage[shortlabels]{enumitem} % Allows changing the enumerate labels, and changes the \ref labels for its items
+%\usepackage[section]{placeins} % Keep all floats in their correct section; useful for notation tables
+% \usepackage[commentmarkup=uwave]{changes} % Allows tracking of changes with \added, \deleted or \replaced
+%\usepackage{setspace}\onehalfspacing % Increase line spacing
+
+% \usepackage{quotchap}
+%\newcommand{\quotewidth}{8cm}
+% Header defintion. To use \thetitle, use package titling (before calling \title).
+% \usepackage{fancyhdr}
+% \setlength{\headheight}{26pt}
+% \addtolength{\topmargin}{-10pt}
+
+% \pagestyle{fancy}
+% \fancyhead{}
+% \fancyhead[LE,RO]{\thepage}
+% \fancyhead[RE]{Symmetry reduction in convex optimization}
+% \fancyhead[LO]{\nouppercase{\leftmark}}
+% \fancyfoot{}
+%\renewcommand{\headrulewidth}{0.4pt}
+%\renewcommand{\headrulewidth}{0pt}
+
+%\fancypagestyle{plain}{% Make the page number bold on the starting page of chapters
+%	\fancyhf{}
+%	\fancyfoot[C]{\bfseries\thepage}
+%}
+
+% \emergencystretch=1em
+
+% \title{Symmetry reduction in convex optimization}
+% \author{Daniel Brosch}
+
+%TODO: Enable again, very slow!
+% \usepackage{imakeidx}
+% \makeindex[intoc]
+
+\usepackage{pgf,tikz,pgfplots}
+\usetikzlibrary{shapes.geometric, graphs, fit, positioning}
+\tikzset{
+    gon1/.style={name=tmp,regular polygon,regular polygon sides=#1,minimum size=10pt,inner sep=(1/(2*(tan(pi/#1)))*0.15},
+    % gon2/.style={name=tmp,regular polygon,regular polygon sides=#1,minimum size=8pt,inner sep=3pt},
+    gon2/.style={name=tmp,regular polygon,regular polygon sides=#1,minimum size=10pt,inner sep=(1/(2*(tan(pi/#1)))*0.15},
+    polygon side/.style args={#1--#2}{
+        insert path={(tmp.corner #1)-- (tmp.corner #2)}
+    }
+}
+
+\newcommand{\FlagGraph}[3][very thick,white,scale=4]{
+\ifnum#2=2%
+    %\tikz[baseline=(tmp1.south)]{
+    \tikz[baseline=0pt]{%(tmp1.center)]{
+        \node[#1, circle,inner sep=1pt,fill] (tmp1) at (0,0){};
+        \node[#1,circle,inner sep=1pt,fill] (tmp2) at (0,8pt){};
+        \ifx#3\empty%
+        \else
+            \draw[#1] (0,0) -- (0,8pt);
+        \fi
+    }
+\else%
+    \tikz[baseline=-2pt]{%(tmp.south)]{    
+    %\tikz[baseline=(tmp.south)]{
+        \node[#1,gon1=#2]{};
+        \foreach \X in {1,...,#2}{
+            % \fill[#1] (tmp.corner \X) circle (1pt);
+            \node [#1,circle,inner sep=1.5pt, fill] at (tmp.corner \X){};
+            %\node [#1,circle,inner sep=0.7pt,fill] at (tmp.corner \X){};
+        }
+        \draw[#1,polygon side/.list={#3}];
+    }
+\fi
+}
+
+\newcommand{\FlagGraphNumb}[4][very thick, white, scale=4]{
+\ifnum#2=2%
+    \tikz[baseline=3pt]{%(tmp2.center)]{
+        \ifx#3\empty%
+        \else
+            \draw[#1] (0,0) -- (0,16pt);
+        \fi
+        \ifnum#4>0
+          \node[#1, circle,inner sep=0pt, fill=black, draw=white] (tmp1) at (0,16pt){\footnotesize 1};
+        \else
+          \node[#1, circle,inner sep=1pt, fill] (tmp1) at (0,16pt){};
+        \fi
+        \ifnum#4>1
+          \node[#1,circle,inner sep=0pt, fill=black, draw=white] (tmp2) at (0,0){\footnotesize 2};
+        \else 
+          \node[#1,circle,inner sep=1pt, fill] (tmp2) at (0,0){};
+        \fi
+    }
+\else%
+    \tikz[baseline=-2pt]{
+        \node[#1,gon2=#2]{};
+        % \node[name=tmp,regular polygon,regular polygon sides=#1,minimum size=8pt,inner sep=3pt]{};
+        \draw[#1,polygon side/.list={#3}];
+        \foreach \X in {1,...,#2}{
+            %\fill (tmp.corner \X) circle (1pt);
+            \pgfmathtruncatemacro\result{\X-1}
+            \ifnum#4>\result
+              \node [#1,circle=black,inner sep=0pt, fill=black, draw=white] at (tmp.corner \X){\footnotesize $\X$};
+            \else 
+              \node [#1,circle,inner sep=1.5pt, fill] at (tmp.corner \X){};
+            \fi
+        }
+
+    }
+\fi
+}
+
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\tikzset{
+	triple/.style args={[#1] in [#2] in [#3]}{
+		#1,preaction={preaction={draw,#3},draw,#2}
+}}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{intersections,calc,shapes,arrows,backgrounds,fit,matrix,positioning, decorations.pathreplacing}
+\tikzset{>=stealth} % Default arrow tip
+\tikzstyle{alg} = [rectangle, rounded corners, minimum height=1.5cm, text centered, draw=black, fill=gray!30, align=center, minimum width=0.5\textwidth] % For the blocks in the dependency graphs
+\tikzstyle{algarrow} = [->, shorten >=1pt, thick] % For the arrows in the dependency graphs
+% \tikzexternalize[figure name=_plot_sec\thesubsection_no,prefix=pics/] % \tikzexternalize should be after \makeindex
+\usepgfplotslibrary{groupplots}
+\pgfplotsset{
+	discard if not/.style 2 args={
+		x filter/.code={
+			\edef\tempa{\thisrow{#1}}
+			\edef\tempb{#2}
+			\ifx\tempa\tempb
+			\else
+			\def\pgfmathresult{inf}
+			\fi
+		}
+	},
+%	every axis/.append style={font=\tiny}
+}
+\colorlet{nicegreen}{green!60!black}
+\definecolor{xdxdff}{rgb}{0.49019607843137253,0.49019607843137253,1.}
+\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1.}
+
+% \newcommand{\Sym}{\text{\rm Sym}}
+
+\def\pgfsysdriver{pgfsys-tex4ht.def}
+
+
+\definecolor{ForestGreen}{RGB}{34,139,34}

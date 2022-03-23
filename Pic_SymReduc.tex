@@ -1,0 +1,24 @@
+% \documentclass[tikz,convert={outfile=\jobname.svg}]{standalone}
+\documentclass[crop,equation,convert={outext=.svg,command=\unexpanded{pdf2svg \infile\space\outfile}},multi=false]{standalone}
+
+\input{tikzMacros.tex}
+\usetikzlibrary{arrows.meta}
+
+\begin{document}
+\color{white}\Huge\boldmath
+% \FlagGraphNumb{5}{1--2,2--3,3--4}{2}
+% + 2 \FlagGraph{5}{1--2,2--3,3--4}
+
+\begin{tikzpicture}
+    \draw[white, very thick] (0,0) rectangle (5cm,5cm);
+
+    \draw[white, very thick, -{Stealth[scale=3]}] (6cm, 2.5cm) -- (9cm, 2.5cm);
+    
+    \begin{scope}[xshift=10cm, very thick, white]
+        \draw[gray] (0,0) rectangle (5cm,5cm);
+        \draw (0,5cm) rectangle (1.5cm,3.5cm) rectangle (2.5cm,2.5cm) rectangle (3cm, 2cm) rectangle (3.5cm, 1.5cm);
+    \end{scope}
+    
+\end{tikzpicture}
+
+\end{document}

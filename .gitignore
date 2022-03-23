@@ -1,0 +1,13 @@
+*.log
+*.svg
+*.pdf
+package.json
+package-lock.json
+/node_modules
+*.aux*
+*.fdb*
+*.fls
+*.bcf
+*.loc 
+*.run.xml
+*.soc
