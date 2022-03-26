@@ -1,0 +1,15 @@
+% \documentclass[tikz,convert={outfile=\jobname.svg}]{standalone}
+\documentclass[crop,equation,convert={outext=.svg,command=\unexpanded{pdf2svg \infile\space\outfile}},multi=false]{standalone}
+
+\input{tikzMacros.tex}
+\usetikzlibrary{arrows.meta}
+
+\usepackage{ytableau}
+
+\begin{document}
+\color{white}\Huge\boldmath
+\ytableausetup{centertableaux,notabloids} 
+% \FlagGraphNumb{5}{1--2,2--3,3--4}{2}
+% + 2 \FlagGraph{5}{1--2,2--3,3--4}
+$t = \ytableaushort{{\color{orange}1}{\color{green}2}34,{\color{orange}5}{\color{green}6}}.$
+\end{document}

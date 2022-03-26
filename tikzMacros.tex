@@ -79,15 +79,15 @@
     }
 }
 
-\newcommand{\FlagGraph}[3][very thick,white,scale=4]{
+\newcommand{\FlagGraph}[3][very thick,white,scale=1.35]{
 \ifnum#2=2%
     %\tikz[baseline=(tmp1.south)]{
     \tikz[baseline=0pt]{%(tmp1.center)]{
-        \node[#1, circle,inner sep=1pt,fill] (tmp1) at (0,0){};
-        \node[#1,circle,inner sep=1pt,fill] (tmp2) at (0,8pt){};
+        \node[#1, circle,inner sep=2pt,fill] (tmp1) at (0,-8pt){};
+        \node[#1,circle,inner sep=2pt,fill] (tmp2) at (0,24pt){};
         \ifx#3\empty%
         \else
-            \draw[#1] (0,0) -- (0,8pt);
+            \draw[#1] (0,-4pt) -- (0,12pt);
         \fi
     }
 \else%
@@ -96,7 +96,7 @@
         \node[#1,gon1=#2]{};
         \foreach \X in {1,...,#2}{
             % \fill[#1] (tmp.corner \X) circle (1pt);
-            \node [#1,circle,inner sep=1.5pt, fill] at (tmp.corner \X){};
+            \node [#1,circle,inner sep=2pt, fill] at (tmp.corner \X){};
             %\node [#1,circle,inner sep=0.7pt,fill] at (tmp.corner \X){};
         }
         \draw[#1,polygon side/.list={#3}];
@@ -104,22 +104,22 @@
 \fi
 }
 
-\newcommand{\FlagGraphNumb}[4][very thick, white, scale=4]{
+\newcommand{\FlagGraphNumb}[4][very thick, white, scale=1.35]{
 \ifnum#2=2%
     \tikz[baseline=3pt]{%(tmp2.center)]{
         \ifx#3\empty%
         \else
-            \draw[#1] (0,0) -- (0,16pt);
+            \draw[#1] (0,-4pt) -- (0,16pt);
         \fi
         \ifnum#4>0
-          \node[#1, circle,inner sep=0pt, fill=black, draw=white] (tmp1) at (0,16pt){\footnotesize 1};
+          \node[#1, circle,inner sep=0.5pt, fill=black, draw=white] (tmp1) at (0,32pt){\footnotesize 1};
         \else
-          \node[#1, circle,inner sep=1pt, fill] (tmp1) at (0,16pt){};
+          \node[#1, circle,inner sep=2pt, fill] (tmp1) at (0,32pt){};
         \fi
         \ifnum#4>1
-          \node[#1,circle,inner sep=0pt, fill=black, draw=white] (tmp2) at (0,0){\footnotesize 2};
+          \node[#1,circle,inner sep=0.5pt, fill=black, draw=white] (tmp2) at (0,-8pt){\footnotesize 2};
         \else 
-          \node[#1,circle,inner sep=1pt, fill] (tmp2) at (0,0){};
+          \node[#1,circle,inner sep=2pt, fill] (tmp2) at (0,-8pt){};
         \fi
     }
 \else%
@@ -131,9 +131,9 @@
             %\fill (tmp.corner \X) circle (1pt);
             \pgfmathtruncatemacro\result{\X-1}
             \ifnum#4>\result
-              \node [#1,circle=black,inner sep=0pt, fill=black, draw=white] at (tmp.corner \X){\footnotesize $\X$};
+              \node [#1,circle=black,inner sep=0.5pt, fill=black, draw=white] at (tmp.corner \X){\footnotesize $\X$};
             \else 
-              \node [#1,circle,inner sep=1.5pt, fill] at (tmp.corner \X){};
+              \node [#1,circle,inner sep=2pt, fill] at (tmp.corner \X){};
             \fi
         }
 

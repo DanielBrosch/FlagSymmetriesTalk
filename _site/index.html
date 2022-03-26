@@ -1,6 +1,30 @@
----
-title: "Symmetry reduced Flag-hierarchies"
----
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Symmetry reduced Flag-hierarchies</title>
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <link rel="stylesheet" href="./dist/reset.css" />
+    <link rel="stylesheet" href="./dist/reveal.css" />
+    <link rel="stylesheet" href="./dist/theme/night.css" id="theme" />
+    <link rel="stylesheet" href="./css/highlight/zenburn.css" />
+
+
+
+    <script>
+      document.write(
+        '<script src="http://' +
+          (location.host || 'localhost').split(':')[0] +
+          ':35729/livereload.js?snipver=1"></' +
+          'script>'
+      );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template">
 $$\require{color}$$
 <!-- reveal-md slides.md -w --theme night -->
 <!-- reveal-md slides.md -w --theme night --static _site -->
@@ -11,9 +35,7 @@ $$\require{color}$$
 ### Daniel Brosch
 <!-- #### Tilburg University -->
 March 28, 2022
-
----
-
+</script></section><section  data-markdown><script type="text/template">
 ## Contents
 
 - Semidefinite programming <!-- .element: class="fragment" data-fragment-index="1"-->
@@ -38,9 +60,7 @@ $$V = m_1S_1\oplus m_2S_2\oplus \ldots \oplus m_kS_k$$ <!-- .element: class="fra
 
 ![](Pic_FlagExample.svg) <!-- .element: class="fragment fade-in-then-out" data-fragment-index="5"-->
 
-</div>
----
-
+</div></script></section><section ><section data-markdown><script type="text/template">
 ## Semidefinite programming
 
 <br />
@@ -52,9 +72,7 @@ $$ \inf_X\\{\langle C,X\rangle : \langle A_i, X\rangle = b_i \forall i, X\succcu
 $$ \inf_X\\{\langle C,X\rangle : \langle A_i, X\rangle = b_i \forall i, \fcolorbox{orange}{black}{$X\succcurlyeq 0$}\\} $$ <!-- .element: class="fragment fade-in-then-out" data-fragment-index="1" -->
 
 </div> 
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ### The anatomy of an SDP
 
 <div class="r-stack">
@@ -85,9 +103,7 @@ $ \color{orange} X\succcurlyeq 0 $ means that $X$ is **positive semidefinite**: 
 SDPs are **linear optimization problems** over a **convex cone**. We can solve them in **polynomial time!**
 <!-- .element: class="fragment fade-in-then-out" data-fragment-index="4" -->
 </div> 
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ### SDPs for polynomial optimization
 
 <div class="r-stack">
@@ -107,9 +123,7 @@ $$ \max_{\lambda, s} \\{\lambda : {\color{green}f}-\lambda = {\color{orange}s_0}
 where the $\color{orange}s_j$ are **nonnegative polynomials**.
 </span>
 </div>
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ### Sums-of-Squares
 
 
@@ -149,17 +163,13 @@ Comparing coefficients leads to a standard SDP!
 </span>
 
 
-
----
-
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## SDP Symmetry reduction basics
 
 <br />
 
 ![](Pic_SymReduc.svg) <!-- .element: class="r-stretch" -->
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ### What is a symmetry?
 
 
@@ -172,9 +182,7 @@ $${\color{orange}\sigma}(X) = \left(X_{{\color{orange}\sigma}(i){\color{orange}\
 <br />
 
 <span class="fragment fade-in" style="color:orange">If $X$ is positive semidefinite, then $\sigma(X)$ is as well!</span>
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ### When does an SDP have a symmetry?
 
  
@@ -192,9 +200,7 @@ $${\color{orange}\sigma}(C)=C.$$
 
 </span></div>
 
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 
 ### How do we exploit symmetries?
 
@@ -209,9 +215,7 @@ $$\mathcal{R}(X) = \frac{1}{|{\color{orange}G}|} \sum_{{\color{orange}\sigma}\in
 $\mathcal{R}(X)$ is again feasible, with the same objective value as $X$!
 
 </span>
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ### Symmetric optimal solutions
 
 <div class="r-stack">
@@ -244,9 +248,7 @@ $$\begin{pmatrix}
 \end{pmatrix}$$ 
 </span>
 </div>
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ### Block-diagonalization
 <div class="r-stack">
 
@@ -284,16 +286,12 @@ How do we find the block-diagonalization?
 
 
 
-Note: This linearizes the problem.
-
----
-
+<aside class="notes"><p>This linearizes the problem.</p>
+</aside></script></section></section><section ><section data-markdown><script type="text/template">
 ## Representation theory 
 
 $$V = m_1W_1\oplus m_2W_2\oplus \ldots \oplus m_kW_k$$
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ### A ${\color{orange}G}$-module is
  
 - a **vectorspace** $V$,
@@ -306,10 +304,8 @@ Together, they let ${\color{orange}G}$ act on vectors:
 
 $$\color{orange}\boxed{gv := \rho(g)v}$$
 
-Note: The image of the group homomorphism is a matrix representation, if one fixes a basis.
-
-----
-### Example: ${\color{orange}S_n}$-module
+<aside class="notes"><p>The image of the group homomorphism is a matrix representation, if one fixes a basis.</p>
+</aside></script></section><section data-markdown><script type="text/template">### Example: ${\color{orange}S_n}$-module
 
 The vectorspace of polynomials up to degree $d$ in $n$ variables:
 $$\mathbb{R}[x_1,\ldots,x_n]_{\leq d}$$
@@ -319,10 +315,8 @@ $${\color{orange}\sigma}(x_i) := x_{{\color{orange}\sigma}(i)}$$
 
 and extending the operation to polynomials.
 
-Note: Depending on if a left or right action is used for permutations, we may need to invert sigma.
-
-----
-
+<aside class="notes"><p>Depending on if a left or right action is used for permutations, we may need to invert sigma.</p>
+</aside></script></section><section data-markdown><script type="text/template">
 ### Irreducible modules
 
 We call a ${\color{orange}G}$-module $V$ **irreducible**, if $V$ and $\\{0\\}$ are the only submodules of $V$.
@@ -344,10 +338,8 @@ V =& \enspace{\color{orange}\mathrm{span}\\{1\\}} \oplus {\color{orange}\mathrm{
 </div>
 </span>
 
-Note: First two submodules are isomorphic!
-
-----
-
+<aside class="notes"><p>First two submodules are isomorphic!</p>
+</aside></script></section><section data-markdown><script type="text/template">
 ### Maschke's Theorem
 
 <span class="r-stack">
@@ -380,9 +372,7 @@ The irreducible modules $S^\lambda$ of $S_n$ are called **Specht modules**.
 
 </span>
 </span>
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ### Schur's Lemma
 #### The main ingredient of block-diagonalization
 
@@ -396,9 +386,7 @@ Let $\color{orange}M$, $\color{orange}N$ be two **irreducible** $G$-modules over
 - If ${\color{orange}M}\simeq {\color{orange}N}$ and $R$ is an algebraically closed field, then ${\color{limegreen}\varphi} = c\mathrm{I}$ for a $c\in R$. <!-- .element: class="fragment"-->
 
 </div>
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ### Symmetry adapted basis
 
 A "<span style="color:green">nice</span>" basis, which respects the decomposition
@@ -408,9 +396,7 @@ is called **symmetry adapted basis** of $V$.
 <br/>
 
 "<span style="color:green">Nice</span>" essentially means that we choose the same basis in each copy of each $S_i$.
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ### Block-diagonalization
 
 <span class="r-stack">
@@ -434,17 +420,11 @@ each appearing with $\dim(S_i)$ identical copies.
 
 ![](Pic_SymReduc.svg)
 
-Note: $G$ acts on the index space of $X$. We can delete the copies.
-
-
-
----
-## Representation theory of ${\color{orange}S_n}$
+<aside class="notes"><p>$G$ acts on the index space of $X$. We can delete the copies.</p>
+</aside></script></section></section><section ><section data-markdown><script type="text/template">## Representation theory of ${\color{orange}S_n}$
 
 ![](Pic_YoungTab.svg)
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ### Permutation modules
 
 <span class="r-stack">
@@ -489,9 +469,7 @@ where $\color{orange}{S_n}$ acts on the <span style="color:orange">entries</span
 </span>
 
 </span>
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ### Specht modules
 
 <span class="r-stack">
@@ -533,9 +511,7 @@ $$S^{\color{orange}\lambda} := \mathrm{span}\\{e_t : t \text{ tableau of shape }
 
 </span>
 </span>
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 #### Decomposing Permutation modules
 
 <div class="r-stack">
@@ -652,16 +628,12 @@ M^{(2,1,1)} \simeq& S^{(4)} \oplus 2S^{(3,1)} \oplus S^{(2,2)}\oplus S^{(2,1,1)}
 
 
 </div>
-
----
-
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Flag-Algebras
 
 ![](Pic_FlagExample.svg)
 
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ### Flag-Algebras
 
 <span class="r-stack">
@@ -687,18 +659,13 @@ They have been used to investigate to <span style="color:orange">dense limits</s
 </span>
 
 
-Note: Razborov unifies and generalizes ideas of many authors.
-
-
-----
-
+<aside class="notes"><p>Razborov unifies and generalizes ideas of many authors.</p>
+</aside></script></section><section data-markdown><script type="text/template">
 ### How many edges can there be in a triangle free graph?
 
 <video class="fv-video" src="./videos/TriangleFree.mp4" fv-playback-info="./videos/TriangleFree.json">
 </video>
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ### Triangle free graphs
 
 <div class="r-stack">
@@ -731,10 +698,8 @@ but how do we find a <span style="color:orange">upper bound</span>?
 </div>
 </div>
 
-Note: Non-induced subgraphs count
-
-----
-
+<aside class="notes"><p>Non-induced subgraphs count</p>
+</aside></script></section><section data-markdown><script type="text/template">
 ### Multiplying subgraph densities
 
 
@@ -765,9 +730,7 @@ We can now fix (<span style="color:orange">flag</span>) certain positions of the
 
 </div>
 </div>
-
-----
-
+</script></section><section data-markdown><script type="text/template">
 ### Flag Sums-of-Squares
 
 <div class="r-stack">
@@ -784,23 +747,71 @@ We can <span style="color:orange">average</span> Flags over all choices of label
 
 ![](Pic_FlagSOS2.svg)
 
-Note: Averaging preserves nonnegativity.
-
+<aside class="notes"><p>Averaging preserves nonnegativity.</p>
 </div>
 
 <div class="fragment fade-in" data-fragment-index="3">
 
-We can now find an <span style="color:orange">upper bound</span> for the edge density in triangle free graphs:
-
-![](Pic_FlagSOS3.svg)
-
+<p>We can now find an <span style="color:orange">upper bound</span> for the edge density in triangle free graphs:</p>
+<p><img src="Pic_FlagSOS3.svg" alt=""></p>
 <div class="fragment fade-in" data-fragment-index="4">
 
-As for <span style="color:orange">polynomial optimization</span>, we can solve Flag-SOS using <span style="color:orange">semidefinite programming</span>.
-
+<p>As for <span style="color:orange">polynomial optimization</span>, we can solve Flag-SOS using <span style="color:orange">semidefinite programming</span>.</p>
 </div>
 
 </div>
 
-</div>
+</div></aside></script></section></section></div>
+    </div>
 
+    <script src="./dist/reveal.js"></script>
+
+    <script src="./plugin/markdown/markdown.js"></script>
+    <script src="./plugin/highlight/highlight.js"></script>
+    <script src="./plugin/zoom/zoom.js"></script>
+    <script src="./plugin/notes/notes.js"></script>
+    <script src="./plugin/math/math.js"></script>
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath
+        ]
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"pdfSeparateFragments":true,"transition":"slide"}, queryOptions);
+    </script>
+
+    <script src="./_assets/plugins/manim.js"></script>
+    <script src="./_assets/plugin.js"></script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>

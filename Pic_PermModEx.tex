@@ -1,0 +1,14 @@
+% \documentclass[tikz,convert={outfile=\jobname.svg}]{standalone}
+\documentclass[crop,equation,convert={outext=.svg,command=\unexpanded{pdf2svg \infile\space\outfile}},multi=false]{standalone}
+
+\input{tikzMacros.tex}
+\usetikzlibrary{arrows.meta}
+
+\usepackage{ytableau}
+
+\begin{document}
+\color{white}\Huge\boldmath
+% \FlagGraphNumb{5}{1--2,2--3,3--4}{2}
+% + 2 \FlagGraph{5}{1--2,2--3,3--4}
+$(1\enspace 5)\ytableausetup{centertableaux,tabloids} \ytableaushort{{\color{orange}1}24,3{\color{orange}5}} = \ytableaushort{{\color{orange}5}24,3{\color{orange}1}} = \ytableaushort{24{\color{orange}5},{\color{orange}1}3}\in M^{\color{orange}{(3,2)}}.$
+\end{document}
