@@ -1,0 +1,53 @@
+% \documentclass[tikz,convert={outfile=\jobname.svg}]{standalone}
+\documentclass[convert={outext=.svg,command=\unexpanded{pdf2svg \infile\space\outfile}},multi=false, varwidth, border={0 0 0cm 0}]{standalone}
+% \documentclass{article}
+\usepackage{amsmath}
+\input{tikzMacros.tex}
+\usetikzlibrary{arrows.meta}
+
+% \usepackage[margins=0]{geometry}
+\usepackage{ytableau}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{etoolbox}
+\begin{document}
+% \FlagGraphNumb{5}{1--2,2--3,3--4}{2}
+% + 2 \FlagGraph{5}{1--2,2--3,3--4}
+% \begin{center}
+\color{white}
+% \begin{big}
+% \Huge
+% \begin{algorithm}
+$$\tikz[baseline=(AB.center), scale=2]{
+    \node[draw, very thick, circle, inner sep= 5pt] (A) at (0,0) {};
+    \node[draw, very thick, circle, inner sep= 5pt] (B) at (0,-1) {};
+    \node[draw, circle, circle, fill, inner sep= 5pt] (C) at (1,-0.5) {};
+    \node[draw, very thick, rounded corners=10pt, inner sep=5pt, fit=(A) (B)] (AB) {};
+    \draw[very thick] (A) -- (B);
+  
+    \node[circle, fill, inner sep=3pt] (AB_1) at (AB.east) {};
+    \draw[very thick] (AB_1) -- (C);
+
+    \node[inner sep=10pt, fit=(AB) (C)] (spacing) {};
+} {\scalebox{2}{=}} \tikz[baseline=(AB.center), scale=2]{
+  \node[draw, very thick, circle, inner sep= 5pt] (A) at (0,0) {};
+  \node[draw, very thick, circle, inner sep= 5pt] (B) at (0,-1) {};
+  \node[draw, circle, circle, fill, inner sep= 5pt] (C) at (1, 0) {};
+  \node[rounded corners=10pt, inner sep=5pt, fit=(A) (B)] (AB) {};
+  \draw[very thick] (A) -- (B);
+  \draw[very thick] (A) -- (C);
+
+  \node[inner sep=10pt, fit=(AB) (C)] (spacing) {};
+} {\scalebox{2}{+}} \tikz[baseline=(AB.center), scale=2]{
+  \node[draw, very thick, circle, inner sep= 5pt] (A) at (0,0) {};
+  \node[draw, very thick, circle, inner sep= 5pt] (B) at (0,-1) {};
+  \node[draw, circle, circle, fill, inner sep= 5pt] (C) at (1, -1) {};
+  \node[rounded corners=10pt, inner sep=5pt, fit=(A) (B)] (AB) {};
+  \draw[very thick] (A) -- (B);
+  \draw[very thick] (B) -- (C);
+
+  \node[inner sep=10pt, fit=(AB) (C)] (spacing) {};
+}.  $$
+% \end{algorithm}
+% \end{big}
+% \end{center}
+\end{document}

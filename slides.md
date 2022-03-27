@@ -3,10 +3,12 @@ title: "Symmetry reduced Flag-hierarchies"
 ---
 $$\require{color}$$
 <!-- reveal-md slides.md -w --theme night -->
-<!-- reveal-md slides.md -w --theme night --static _site -->
+<!-- reveal-md slides.md --theme night --static _site -->
+<!-- Then copy videos! -->
+<!-- and remove _asset paths -->
 ## Symmetry reduced Flag-hierarchies
 
--
+<br/>
 
 ### Daniel Brosch
 <!-- #### Tilburg University -->
@@ -37,6 +39,10 @@ $$V = m_1S_1\oplus m_2S_2\oplus \ldots \oplus m_kS_k$$ <!-- .element: class="fra
 
 
 ![](Pic_FlagExample.svg) <!-- .element: class="fragment fade-in-then-out" data-fragment-index="5"-->
+
+<img class="r-stretch" src="Pic_SpechtFlags.svg"><!-- .element: class="fragment fade-in-then-out" data-fragment-index="6"-->
+
+<img class="r-stretch" src="Pic_MaxCliques.svg"><!-- .element: class="fragment fade-in-then-out" data-fragment-index="7"-->
 
 </div>
 ---
@@ -726,7 +732,7 @@ We saw that
 
 ![](Pic_EqTriangleFreeLowerBound.svg)
 
-but how do we find a <span style="color:orange">upper bound</span>?
+but how do we find an <span style="color:orange">upper bound</span>?
 
 </div>
 </div>
@@ -799,8 +805,635 @@ We can now find an <span style="color:orange">upper bound</span> for the edge de
 As for <span style="color:orange">polynomial optimization</span>, we can solve Flag-SOS using <span style="color:orange">semidefinite programming</span>.
 
 </div>
+</div>
+</div>
+
+----
+
+### Flags as (limits of) polynomials
+
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="2">
+
+Recently, **Raymond**, **Saunderson**, **Singh** and **Thomas** have proven a fascinating connection of <span style="color:orange">Flag-SOS</span> and <span style="color:orange">polynomial SOS</span>: 
+
+<br/>
+
+- Flags can be seen as limits of polynomials.
+- <span style="color:orange">Partially</span> exploiting the polynomials' symmetries and taking the limit leads to Flag-SOS.
+
+<span style="color:orange">We fully exploit their symmetries!</span><!-- .element: class="fragment" data-fragment-index="1"-->
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="2">
+
+Maximizing the <span style="color:orange">edge density</span> in a <span style="color:green">triangle</span>-free graph can be reformulated as:
+
+\begin{align}
+    \lim_{n\to\infty}\max \enspace&{\color{orange}\frac{1}{\binom n 2}\sum_{1\leq i<j\leq n} x_{ij}}\\\\
+    \text{s.t.}\enspace & {\color{green}\frac{1}{\binom{n}{3}}\sum_{1\leq i<j<k\leq n} x_{ij}x_{ik}x_{jk}} = 0,\\\\
+    & x_{ij}\in\\{0,1\\} \quad \text{for all } i < j.
+\end{align}
+
+</div>
+<div class="fragment fade-in" data-fragment-index="3">
+
+We introduce <span style="color:orange">binary</span> variables corresponding to <span style="color:orange">edges</span>:
+
+$$ x_{ij} \in \\{0,1\\} \quad \text{for } i < j. $$
+
+<div class="fragment" data-fragment-index="4">
+
+Subgraph densities are polynomials <span style="color:orange">invariant</span> under $\color{orange}{S_n}$ acting simultanously on the indices:
+
+$${\color{orange}\sigma}(x_{ij}) = x_{{\color{orange}\sigma}(i){\color{orange}\sigma}(j)}.$$
+
+<div class="fragment" data-fragment-index="5" style="color:orange">
+We can exploit this symmetry!
+</div>
+
+</div>
+
+</div>
+</div>
+
+Note: Monomials = fully labeled graphs. Action corresponds to permuting labels.
+
+---
+
+## Lasserre style hierarchy
+#### Prioritizing Flags with <span style="color:orange">few edges</span>
+
+<!-- <div class="r-stretch">
+
+![](Pic_SpechtFlags.svg)
+
+</div> -->
+
+<img class="r-stretch" src="Pic_SpechtFlags.svg">
+
+----
+
+### The Lasserre hierarchy
+
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="2">
+
+The $\color{orange}d$'th level of the <span style="color:orange">Lasserre hierarchy</span> limits the <span style="color:orange">degree</span> of appearing monomials to at most $2{\color{orange}d}$.
+
+<br/>
+
+<div class="fragment" data-fragment-index="1">
+We optimize over sums of squares of the form
+
+$${\color{red}[x]}^T X  {\color{red}[x]},$$
+
+where $X\succcurlyeq 0$ and ${\color{red}[x]}$ is a basis of 
+$$ \mathbb{R}[x]_{\leq {\color{orange}d}}.$$
+
+</div>
+
+</div>
+<div class="fragment fade-in" data-fragment-index="2">
+
+As monomials correspond to <span style="color:orange">fully labeled graphs</span>, we here have
+
+$${\color{red}[x]} = \\{H : H \text{ graph with at most $\color{orange}d$ edges}\\}.$$
+
+</div>
+</div>
+
+
+
+
+----
+
+### Symmetry reduction
+
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="3">
+<span>We can <span style="color:orange">block-diagonalize</span> SDPs such as those coming from sums-of-squares.</span>
+
+<span>To do this, we need to <span style="color:orange">decompose $\mathbb{R}[x]_{\leq d}$ into irreducible submodules</span>.</span>  <!-- .element: class="fragment" data-fragment-index="1"-->
+
+<span>The irreducible submodules of $\color{orange}{S_n}$ are the <span style="color:orange">Specht modules $S^\lambda$</span>. </span> <!-- .element: class="fragment" data-fragment-index="2"-->
+</div>
+<div class="fragment fade-in" data-fragment-index="3">
+
+We need to find a basis of the <span style="color:orange">multiplicity space</span> of each Specht module
+
+$$\mathrm{Hom}(S^\lambda, \mathbb{R}[x]_{\leq {\color{orange}d}}).$$
+
+<div class="fragment" data-fragment-index="4">
+If we can first decompose $\mathbb{R}[x]_{\leq {\color{orange}d}}$ into <span style="color:orange">Permutation modules $M^\lambda$</span>, we can use their <span style="color:orange">well known decomposition</span>.
+</div>
+
+</div>
+</div>
+
+----
+
+### Warmup: Variables with a single index
+
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="1">
+Let's first consider a problem in variables
+
+$$x_i\in \\{0,1\\},$$
+
+where
+
+$${\color{orange}\sigma}(x_i) = x_{{\color{orange}\sigma}(i)}$$
+
+for ${\color{orange}\sigma}\in S_n$.
+
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+We can decompose $\mathbb{R}[x]_{\leq {\color{orange}d}}$ into <span style="color:orange">spans of orbits of monomials</span>:
+
+\begin{align}
+\mathbb{R}[x]_{\leq {\color{orange}d}} =& \mathrm{span}\\{1\\}\\\\
+&\oplus \mathrm{span}\\{x_1,x_2,\ldots\\}\\\\
+&\oplus \mathrm{span}\\{x_1x_2, x_1x_3, x_2x_3,\ldots\\}\\\\
+&\oplus \ldots \oplus \mathrm{span}(S_n(x_1x_2\cdot\ldots\cdot x_\{\color{orange}d\} ))\\\\
+\end{align}
+
+</div>
+<div class="fragment fade-out" data-fragment-index="4">
+<div class="fragment fade-in" data-fragment-index="2">
+
+Each span of orbit of a monomial is isomorphic to a <span style="color:orange">Permutation module</span>:
+
+$$\mathrm{span}(S_n(x_1x_2\cdot\ldots\cdot x_i )) \simeq M^{(n-i,i)}.$$
+
+<div class="fragment" data-fragment-index="3">
+For example, in the case $n=7$, we have
+
+![](Pic_OrbitSingleIndexIso.svg)
+
+</div>
+</div>
+</div>
+<div class="fragment fade-in" data-fragment-index="4">
+
+We can now decompose the polynomials up to degree $\color{orange}d$ as
+
+$$\mathbb{R}[x]_\{\leq {\color{orange}d}\} = \bigoplus_\{i=0\}^\{\color{orange}d\}M^{(n-i,i)}, $$
+
+and then further decompose each Permutation module into Specht modules.
 
 </div>
 
 </div>
 
+----
+
+### General case
+
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="1">
+Let's attempt the same in the case of graphs. We can first decompose $\mathbb{R}[x]_{\leq {\color{orange}d}}$ into <span style="color:orange">spans of orbits of monomials</span>:
+
+$$\mathbb{R}[x]\_\{\leq {\color{orange}d}\} = \bigoplus_{\text{Graphs $H$ with up to $\color{orange}d$ edges}}\mathbb{R}[H, n],$$
+
+where the sum is taken up to isomorphism, and 
+
+$$\mathbb{R}[H, n] := \mathrm{span}\left(S_n\left(\prod_{(i,j)\in E(H)}x_{ij} \right)\right).$$
+
+</div>
+<div class="fragment fade-in" data-fragment-index="1">
+For example, we have
+
+![](Pic_GraphModuleDecomp.svg)
+
+where
+
+![](Pic_GraphModuleEx.svg)
+
+<div class="fragment" data-fragment-index="2">
+How do we decompose these <span style="color:orange">"Graph-modules"</span>?
+</div>
+</div>
+</div>
+
+----
+
+### Decomposing Graph-modules
+
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="1">
+Decomposing the $S_n$-modules $\mathbb{R}[H, n]$ into <span style="color:orange">Specht modules</span> can be <span style="color:orange">easy in some cases:</span>
+
+![](Pic_PathModule.svg)
+
+by
+
+![](Pic_PathModuleIso.svg)
+
+
+</div>
+
+<div class="fragment fade-out" data-fragment-index="3">
+<div class="fragment fade-in" data-fragment-index="1">
+In most cases <span style="color:red">we cannot find an isomorphism</span> between $\mathbb{R}[H, n]$ and a Permutation module.
+
+<div class="fragment" data-fragment-index="2">
+But we can always find isomorphisms to <span style="color:orange">quotients of permutation modules</span>, for example
+
+![](Pic_E2Module.svg)
+
+![](Pic_E2ModuleIso.svg)
+</div>
+</div>
+</div>
+
+<div class="fragment fade-in" data-fragment-index="3">
+
+In general, we have
+
+$$\mathbb{R}[H,n] \simeq M^{(n-|V(H)|,1,\ldots, 1)} \color{orange} / \mathrm{Aut}(H),$$
+
+where the automorphisms of $H$ <span style="color:orange">act on the rows of tabloids</span> in the Permutation module.
+
+<div class="fragment" data-fragment-index="4" style="color:orange">
+
+This generalizes Permutation-modules by taking equivalence classes over groups that are not Young-groups.
+
+</div>
+
+</div>
+
+
+</div>
+
+Note: Starting from the second row. We can simplify a bit if a pairwise swap is an automorphism.
+
+----
+
+### Decomposing $M^\lambda / {\color{orange}G}$
+
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="1">
+
+We need to find a basis of the <span style="color:orange">multiplicity space</span> of each Specht-module:
+
+$$\mathrm{Hom}(S^\mu,M^\lambda / {\color{orange}{\color{orange}G}}) \simeq \mathcal{R}_{\color{orange}G} (\mathrm{Hom}(S^\mu,M^\lambda)),$$
+
+where $\mathcal{R}_G$ is the Reynolds operator of ${\color{orange}G}$, which <span style="color:orange">averages</span> over all group elements.
+
+</div>
+<div class="fragment fade-in" data-fragment-index="1">
+
+We know that a basis of $\mathrm{Hom}(S^\mu,M^\lambda)$ is given by homomorphisms corresponding to <span style="color:orange">semistandard tableaux</span> of shape $\mu$ and content $\lambda$.
+
+<br/>
+
+<div class="fragment" data-fragment-index="2">
+
+<span style="color:orange">Idea:</span>
+
+1. Calculate a matrix representation of $\mathcal{R}_{\color{orange}G}$ in this basis.
+2. Choose a subset of columns spanning the image of $\mathcal{R}_{\color{orange}G}$.
+
+</div>
+
+</div>
+</div>
+
+----
+
+### Calculating $\mathcal{R}_{\color{orange}G}$: <span style="color:red">Problems</span>
+
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="2">
+
+The vectors $\vartheta_T(e_t) \in M^\lambda$, where $e_t\in S^\mu$ and $\vartheta_T \in \mathrm{Hom}(S^\mu,M^\lambda)$, get <span style="color:red">extremely long</span>. In small cases we can already reach more than <span style="color:red">$100.000.000$ nonzero coefficients</span>.
+
+<br/>
+
+<span style="color:red">We cannot work with the vectors explicitly!</span><!-- .element: class="fragment" data-fragment-index="1"-->
+
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="2">
+
+While we have a lot of structure in some cases, such as $\small\mathcal{R} _ {C_{20}}\left(\mathrm{Hom}\left(S^{(18,1,1)},M^{(1,\ldots,1)}\right)\right): $
+
+<img class="r-stretch" src="RA.png">
+
+</div>
+
+<div class="fragment fade-in-then-out" data-fragment-index="3">
+
+There are usually <span style="color:red">no clear patterns</span> in the Reynolds operators. <span style="color:red">Analytic solutions are unlikely.</span>
+
+<img class="r-stretch" src="RB.png">
+
+</div>
+
+<div class="fragment fade-in-then-out" data-fragment-index="4">
+
+We need to understand the action of permutations on homomorphisms in $\mathrm{Hom}(S^\mu,M^\lambda)$.
+
+![](Pic_PermHom.svg)
+
+$T$ is <span style="color:orange">not semistandard</span>! We need to <span style="color:orange">decompose</span> the corresponding homomorphism $\vartheta_T$ in the semistandard basis of $\mathrm{Hom}(S^\mu,M^\lambda)$.
+
+</div>
+
+<div class="fragment fade-in" data-fragment-index="5">
+
+It is <span style="color:orange">known</span> that we can always decompose 
+
+$$\vartheta_T = \sum_{T'\text{ semistandard}}c_{T'}\vartheta_{T'}.$$
+
+<span style="color:red" class="fragment" data-fragment-index="6">But proofs in the literature are based on an existence argument. We would again need to use the very long vectors explicitly.</span>
+
+</div>
+
+</div>
+
+Note: not semistandard, we would need long vector
+
+----
+
+### A "straightening" algorithm for generalized tableaux
+
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="1">
+We propose an <span style="color:orange">algorithm</span> to determine the decomposition
+
+$$\vartheta_T = \sum_{T'\text{ semistandard}}c_{T'}\vartheta_{T'}$$
+
+in $\mathcal{O}({\color{orange}k}^2)$ steps, where $\color{orange}k$ is the number of semistandard tableaux of the <span style="color:orange">same shape and content as $T$</span>.
+</div>
+
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+Most of the work <span style="color:orange">is independent of $T$</span>.
+
+
+<div class="r-frame">
+
+This allows us to calculate an <span style="color:orange"> $k\times k$ matrix representation</span> of permutations $\sigma$ on $\mathrm{Hom}(S^\mu,M^\lambda):$
+
+$$ \vartheta_T \mapsto \vartheta_{\sigma(T)}$$
+
+in $\mathcal{O}({\color{orange}k}^2)$ steps.
+
+</div>
+</div>
+
+<div class="fragment fade-in" data-fragment-index="2">
+
+We can calculate the matrices corresponding to a <span style="color:orange">generator of $G$</span>, and use a <span style="color:orange">Stabilizer-chain of $G$</span> to calculate $\color{orange}{\mathcal{R}_G}$ efficiently.
+
+<br/>
+
+<div class="fragment" data-fragment-index="3">
+A Stabilizer-chain of $G$ can be found using the <span style="color:orange">Schreier-Sims algorithm</span>.
+</div>
+
+</div>
+
+</div>
+
+
+----
+
+<img class="r-stretch" src="Pic_Algo.svg">
+
+----
+
+### Interpretation: Specht-Flags
+
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="1">
+
+Earlier we defined the homomorphism of the semistandard tableau $T$
+
+![](Pic_YoungTabExColor.svg)
+
+to be the function
+
+![](Pic_SemistandardHom.svg)
+
+
+
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+
+![](Pic_SemistandardHom.svg)
+
+Essentially returns an element of $M^{(2,2,1)}$, which has been <span style="color:orange">symmetrized</span> according to the row-stabilizer of $T$:
+
+$$S_{\\{{\color{orange}{a,b,c}}\\}}\times S_{\\{{\color{green}{d,e}}\\}}.$$
+
+</div>
+
+<div class="fragment fade-in-then-out" data-fragment-index="2">
+
+![](Pic_SymGraphTab.svg)
+
+It's the same here: <span style="color:orange">We add symmetries to graphs.</span>
+
+<img class="r-stretch" src="Pic_SymGraph.svg">
+
+<span style="color:orange">Filled vertices</span> are unlabeled vertices, i.e. symmetrized with all not-appearing vertices.
+
+</div>
+
+<div class="fragment fade-in-then-out" data-fragment-index="3">
+
+We are interested in images of <span style="color:orange">polytabloids</span>. The polytabloid of the standard tableaux 
+
+![](Pic_PolytabExA.svg)
+
+is:
+
+![](Pic_PolytabExB.svg)
+
+</div>
+
+<div class="fragment fade-in-then-out" data-fragment-index="4">
+
+Here, this defines a <span style="color:orange">product</span> between <span style="color:orange">graphs with symmetrized vertex groups:</span>
+
+<img class="r-stretch" src="Pic_SpechtFlags.svg">
+
+we can now evaluate the symmetrization groups to obtain a linear combination of graphs.
+
+</div>
+
+<div class="fragment fade-in" data-fragment-index="5">
+We can calculate these products efficiently with help of a generalized version of the algorithm of <span style="color:orange">Dion Gijswijt</span> or the algorithm of <span style="color:orange">Sven Polak</span>.
+
+</div>
+
+
+
+</div>
+
+---
+
+## Razborov style hierarchy
+#### Prioritizing Flags with <span style="color:orange">few vertices</span>
+
+----
+
+### Nearly symmetric sums of squares
+
+**Raymond et al.:** Every Specht module $S^{(\lambda_1,\ldots,\lambda_m)}$ has an element <span style="color:orange">invariant under $S_{\lambda_1}$.</span>
+
+This tells us that we get a hierarchy <span style="color:orange">equivalent to Lasserre's</span> by optimizing over an SDP indexed by <span style="color:orange">Flags with at most $2d$ labels.</span>
+
+----
+
+### Prioritizing small graphs
+
+<div class="r-stack">
+
+<!-- STACK 1 -->
+<div class="fragment fade-out" data-fragment-index="1">
+
+**Razborov** prioritizes Flags with <span style="color:orange">few vertices</span>. Let $\color{green}T$ be the maximum number of vertices we want to appear. 
+
+</div>
+<!-- STACK 2 -->
+
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+The $\color{green}T$'th level of Razborov's hierarchy is equivalent to optimizing over
+
+$${\color{red}[x]}^T X  {\color{red}[x]},$$
+
+where ${\color{red}[x]}$ contains Flags with $\color{orange}a$ labels in $\\{1,\ldots, {\color{green}T}\\}$ and at most $\lfloor ({\color{green}T}-{\color{orange}a}) / 2\rfloor$ unlabeled vertices. <span style="color:orange">Furthermore we need another decomposition condition.</span>
+</div>
+
+<!-- STACK 3 -->
+<div class="fragment fade-out" data-fragment-index="4">
+<div class="fragment fade-in" data-fragment-index="2">
+
+
+We require that $X$ can be decomposed into a <span style="color:orange">sum over rank $1$-matrices</span>
+$$X = X_1 + \ldots + X_k,$$
+where each ${\color{red}[x]}^T X_i  {\color{red}[x]}$ contains no graph with more than ${\color{green}T}$ vertices.
+
+
+<div class="fragment" data-fragment-index="3">
+
+The $X_i$ correspond exactly to the <span style="color:orange">maximal 
+cliques</span> in the enforced sparsity pattern!
+
+</div>
+
+</div>
+
+</div>
+
+<!-- STACK 4 -->
+
+<div class="fragment fade-in" data-fragment-index="4">
+
+The sparsity pattern in the case ${\color{green}T}=4$:
+
+![](RazborovSparsity.png)
+
+</div>
+
+</div>
+
+
+----
+
+### The maximal cliques
+
+Up to symmetry, we obtain a maximal clique for each integer $S\in\\{1,\ldots,{\color{green}T}\\}$ with $S\mod 2 \equiv T$. In the case ${\color{green}T}=4$ these are:
+
+![](Pic_MaxCliques.svg)
+
+
+----
+### Breaking Schur's Lemma
+
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="2">
+
+<div class="r-frame">
+
+Let $\color{orange}M$, $\color{orange}N$ be two **irreducible** $G$-modules over a ring $R$. Let ${\color{limegreen}\varphi} : {\color{orange}M}\to {\color{orange}N}$ be a homomorphism.
+
+- If $\color{orange}M$ and $\color{orange}N$ are not isomorphic, then ${\color{limegreen}\varphi} \equiv 0$. 
+- If ${\color{orange}M}\simeq {\color{orange}N}$ and $R$ is an <span style="color:red">algebraically closed field</span>, then ${\color{limegreen}\varphi} = c\mathrm{I}$ for a $c\in R$. 
+
+</div>
+
+<br/>
+
+<div class="fragment" data-fragment-index="1">
+We optimize over $\{0,1\} = \mathbb{Z}_2$, which is <span style="color:orange">not algebraically closed!</span>
+</div>
+
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="2">
+
+<img class="r-stretch" src="Pic_BreakingSchurs.svg">
+
+Both modules are <span style="color:orange">isomorphic</span> to the module $M^{(1,1)}$, but also <span style="color:orange">orthogonal</span> to each other, as $x_{1,2}(1-x_{1,2}) = 0$.
+</div>
+
+<div class="fragment fade-in" data-fragment-index="3">
+
+We obtain <span style="color:orange">one block for each graph with up to $\color{green}T$ vertices</span> by applying a <span style="color:orange">Möbius transformation</span> on the labeled vertices.
+
+
+<div class="fragment" data-fragment-index="4">
+The symmetries of each block are given by the <span style="color:orange">automorphism group</span> of the corresponding graph. <span style="color:red">The symmetry groups are not $S_n$ anymore!</span>
+</div>
+
+<br/>
+
+<div class="fragment" data-fragment-index="5">
+We can still exploit them computationally with the <span style="color:orange">Jordan reduction method.</span>
+</div>
+
+</div>
+</div>
+
+----
+
+### Comparing the hierarchies
+
+In the setting of (undirected) graphs we have 
+  \begin{equation}
+    \mathrm{Las}_{2{\color{orange}d}} \geq \mathrm{Raz} _{4{\color{orange}d}}
+  \end{equation}
+  and
+  \begin{equation}
+    \mathrm{Raz} _{\color{green}T} \geq \mathrm{Las} _{2\binom{{\color{green}T}}{2}}.
+  \end{equation}
+
+---
+
+### Advanced ideas
+
+
+- Different limits for <span style="color:orange">degenerate extremal combinatorics</span>.
+
+<span class="fragment">
+
+- Razborov introduces <span style="color:orange">combinatoric partial derivatives</span> in direction of *vertex and edge deletion*. We can generalize them and exploit their symmetries.
+
+</span>
+<span class="fragment">
+
+- We define a <span style="color:orange">Fourier transformation</span> on Flags, which results in computational advantages. They also lead to a <span style="color:orange">natural recursive formulation of Sidorenko's conjecture</span>.
+
+</span>
+---
+
+## Software
+
+A Julia package implementing the fully reduced hierarchies (and much more!) for <span style="color:orange">arbitrary Flags</span> will be available very soon.
+
+--- 
+
+## Paper
+
+Should be online soon-ish. It will be first available as part of <span style="color:orange">my thesis draft</span>.

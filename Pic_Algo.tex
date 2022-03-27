@@ -1,0 +1,43 @@
+% \documentclass[tikz,convert={outfile=\jobname.svg}]{standalone}
+\documentclass[convert={outext=.svg,command=\unexpanded{pdf2svg \infile\space\outfile}},multi=false, varwidth, border={0 0 0cm 0}]{standalone}
+% \documentclass{article}
+\usepackage{amsmath}
+\input{tikzMacros.tex}
+\usetikzlibrary{arrows.meta}
+
+% \usepackage[margins=0]{geometry}
+\usepackage{ytableau}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{etoolbox}
+\begin{document}
+% \FlagGraphNumb{5}{1--2,2--3,3--4}{2}
+% + 2 \FlagGraph{5}{1--2,2--3,3--4}
+% \begin{center}
+\color{white}
+% \begin{big}
+% \big
+% \begin{algorithm}
+\begin{algorithm}[H]
+  \caption{Decompose a generalized tableau $T$ in terms of semistandard tableaux}
+  \tcp{Determine all appearing semistandard tableaux:}
+  $\mathrm{PartialHomomorphisms} \leftarrow \{\vartheta_T\}$\;
+  \For{$i=1,\dots,m$}{
+    Split all $\overline{\vartheta_S}\in \mathrm{PartialHomomorphisms}$ further by fixing all $i$-entries in all possible ways\;
+    Delete all partial homomorphisms which are not semistandard after sorting their columns and restricting to entries $1,\dots,i$\; 
+  }
+  \tcp{Determine their multiplicities:}
+  $c_{T'} \leftarrow 0$ for all semistandard tableaux $T'$\;
+  \For{$\overline{\vartheta_S}\in \mathrm{PartialHomomorphisms}$}{
+    $p\leftarrow$ the permutation sorting the columns of $S$\;
+    $T'\leftarrow$ column-sorted $S$\;
+    $c_{T'} = c_{T'} + \mathrm{sign}(p)$\; 
+  }
+  \If{not highest level of the recursion}{
+    $c_T = 0$\;
+  }
+  \Return{$\sum_{T'}c_{T'}(\vartheta_{T'} - \mathrm{Decompose}(T'))$}
+\end{algorithm}
+% \end{algorithm}
+% \end{big}
+% \end{center}
+\end{document}

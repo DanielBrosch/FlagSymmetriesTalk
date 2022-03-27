@@ -68,6 +68,8 @@
 % \usepackage{imakeidx}
 % \makeindex[intoc]
 
+\newcommand{\GraphPoly}[2]{\mathbb{R}\left[#1,#2\right]}
+
 \usepackage{pgf,tikz,pgfplots}
 \usetikzlibrary{shapes.geometric, graphs, fit, positioning}
 \tikzset{
@@ -79,7 +81,7 @@
     }
 }
 
-\newcommand{\FlagGraph}[3][very thick,white,scale=1.35]{
+\newcommand{\FlagGraph}[3][very thick,white,scale=1.45]{
 \ifnum#2=2%
     %\tikz[baseline=(tmp1.south)]{
     \tikz[baseline=0pt]{%(tmp1.center)]{
@@ -104,7 +106,7 @@
 \fi
 }
 
-\newcommand{\FlagGraphNumb}[4][very thick, white, scale=1.35]{
+\newcommand{\FlagGraphNumb}[4][very thick, white, scale=1.45]{
 \ifnum#2=2%
     \tikz[baseline=3pt]{%(tmp2.center)]{
         \ifx#3\empty%

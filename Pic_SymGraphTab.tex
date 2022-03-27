@@ -1,0 +1,30 @@
+% \documentclass[tikz,convert={outfile=\jobname.svg}]{standalone}
+\documentclass[convert={outext=.svg,command=\unexpanded{pdf2svg \infile\space\outfile}},multi=false, varwidth, border={0 0 2cm 0}]{standalone}
+% \documentclass{article}
+\usepackage{amsmath}
+\input{tikzMacros.tex}
+\usetikzlibrary{arrows.meta}
+
+% \usepackage[margins=0]{geometry}
+\usepackage{ytableau}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{etoolbox}
+\begin{document}
+% \FlagGraphNumb{5}{1--2,2--3,3--4}{2}
+% + 2 \FlagGraph{5}{1--2,2--3,3--4}
+% \begin{center}
+\color{white}
+% \begin{big}
+\LARGE
+% \begin{algorithm}
+$$\ytableausetup{tabloids, centertableaux}
+x_{{\color{orange}i}{\color{green}j}}x_{{\color{orange}i}{\color{green}k}} \longleftrightarrow
+  \begin{ytableau}
+  {} & {} & [n]\setminus\{{\color{orange}i},{\color{green}j},{\color{green}k}\} & {}&{}  \\
+  {\color{green}j} & {\color{green}k} \\
+  {\color{orange}i}
+  \end{ytableau}, \quad T = \ytableaushort{{\color{green}2}111\cdots,{\color{green}2}{\color{orange}3}}$$
+% \end{algorithm}
+% \end{big}
+% \end{center}
+\end{document}

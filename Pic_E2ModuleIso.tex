@@ -1,0 +1,35 @@
+% \documentclass[tikz,convert={outfile=\jobname.svg}]{standalone}
+\documentclass[equation,convert={outext=.svg,command=\unexpanded{pdf2svg \infile\space\outfile}},multi=false, varwidth=true, border={0 0 5cm 0}]{standalone}
+% \documentclass{article}
+\usepackage{amsmath}
+\input{tikzMacros.tex}
+\usetikzlibrary{arrows.meta}
+
+% \usepackage[margins=0]{geometry}
+\usepackage{ytableau}
+
+\begin{document}
+% \FlagGraphNumb{5}{1--2,2--3,3--4}{2}
+% + 2 \FlagGraph{5}{1--2,2--3,3--4}
+% \begin{center}
+\color{white}
+% \begin{big}
+\huge
+\boldmath
+\begin{equation*}
+  \ytableausetup{tabloids, centertableaux}
+  x_{{\color{orange}i}{\color{orange}j}}x_{{\color{green}k}{\color{green}l}} \longleftrightarrow \left\lbrace
+\begin{ytableau}
+{} & {} & [n]\setminus\{{\color{orange}i},{\color{orange}j},{\color{green}k},{\color{green}l}\} & {} & {}  \\
+{\color{orange}i} & {\color{orange}j} \\
+{\color{green}k} & {\color{green}l}
+\end{ytableau}
+,  \begin{ytableau}
+{} & {} & [n]\setminus\{{\color{orange}i},{\color{orange}j},{\color{green}k},{\color{green}l}\} &{} & {}  \\
+{\color{green}k} & {\color{green}l} \\
+{\color{orange}i} & {\color{orange}j}
+\end{ytableau}\right\rbrace.
+\end{equation*}
+% \end{big}
+% \end{center}
+\end{document}
