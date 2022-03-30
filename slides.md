@@ -12,7 +12,7 @@ $$\require{color}$$
 
 ### Daniel Brosch
 <!-- #### Tilburg University -->
-March 28, 2022
+April 1, 2022
 
 ---
 
@@ -25,7 +25,6 @@ March 28, 2022
 - Flag-Algebras <!-- .element: class="fragment" data-fragment-index="5" -->
 - Lasserre style hierarchy <!-- .element: class="fragment" data-fragment-index="6" -->
 - Razborov style hierarchy <!-- .element: class="fragment" data-fragment-index="7" -->
-- Advanced ideas <!-- .element: class="fragment" data-fragment-index="8" -->
 
 <div class="r-stack">
 
@@ -765,7 +764,7 @@ $$H:\mathcal{G}\mapsto p(\mathcal{G},H).$$
 </div>
 <div class="fragment fade-in" data-fragment-index="3">
 
-We can now fix (<span style="color:orange">flag</span>) certain positions of the randomly chosen permutations $\sigma_i$, and extend the <span style="color:orange">gluing</span> operation to <span style="color:orange">partially labeled graphs (Flags)</span>:
+We can now restrict the randomly chosen permutations $\sigma_i$ to fix (<span style="color:orange">flag</span>) some vertices, and extend the <span style="color:orange">gluing</span> operation to <span style="color:orange">partially labeled graphs (Flags)</span>:
 
 ![](Pic_FlagExample.svg)
 
@@ -802,7 +801,7 @@ We can now find an <span style="color:orange">upper bound</span> for the edge de
 
 <div class="fragment fade-in" data-fragment-index="4">
 
-As for <span style="color:orange">polynomial optimization</span>, we can solve Flag-SOS using <span style="color:orange">semidefinite programming</span>.
+As for <span style="color:orange">polynomial optimization</span>, we can model Flag-SOS using <span style="color:orange">semidefinite programming</span>.
 
 </div>
 </div>
@@ -860,6 +859,51 @@ Note: Monomials = fully labeled graphs. Action corresponds to permuting labels.
 
 ---
 
+## Main contributions
+
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="1">
+
+We fully <span style="color:orange">exploit the symmetries</span> of two hierarchies:
+
+- <span style="color:orange">Lasserre</span> hierarchy for Flags with <span style="color:orange">few edges</span>       
+
+- <span style="color:orange">Razborov</span> hierarchy for Flags with <span style="color:orange">few vertices</span>     
+
+</div>
+
+<div class="fragment fade-out" data-fragment-index="5">
+<div class="fragment fade-in" data-fragment-index="1">
+
+We lay the groundwork for a few novel ideas:
+
+
+<span class="fragment" data-fragment-index="2">Extension of Flag-Algebras to <span style="color:orange">degenerate extremal combinatorics</span>.</span>
+
+<div class="fragment" data-fragment-index="3">
+
+A <span style="color:orange">harmonic basis</span> and <span style="color:orange">Fourier decomposition</span> of Flags.
+
+</div>
+
+<div class="fragment" data-fragment-index="4">
+
+A generalization of Razborov's <span style="color:orange">partial derivatives</span> of Flags.
+
+</div>
+</div>
+</div>
+<div class="fragment" data-fragment-index="5">
+A Julia software package implementing all hierarchies for <span style="color:orange">arbitrary Flags</span> will be available soon.
+</div>
+
+
+</div>
+
+
+
+---
+
 ## Lasserre style hierarchy
 #### Prioritizing Flags with <span style="color:orange">few edges</span>
 
@@ -890,6 +934,7 @@ $${\color{red}[x]}^T X  {\color{red}[x]},$$
 where $X\succcurlyeq 0$ and ${\color{red}[x]}$ is a basis of 
 $$ \mathbb{R}[x]_{\leq {\color{orange}d}}.$$
 
+
 </div>
 
 </div>
@@ -907,7 +952,7 @@ $${\color{red}[x]} = \\{H : H \text{ graph with at most $\color{orange}d$ edges}
 
 ----
 
-### Symmetry reduction
+### Reduction strategy
 
 <div class="r-stack">
 <div class="fragment fade-out" data-fragment-index="3">
@@ -993,11 +1038,11 @@ and then further decompose each Permutation module into Specht modules.
 <div class="fragment fade-out" data-fragment-index="1">
 Let's attempt the same in the case of graphs. We can first decompose $\mathbb{R}[x]_{\leq {\color{orange}d}}$ into <span style="color:orange">spans of orbits of monomials</span>:
 
-$$\mathbb{R}[x]\_\{\leq {\color{orange}d}\} = \bigoplus_{\text{Graphs $H$ with up to $\color{orange}d$ edges}}\mathbb{R}[H, n],$$
+$$\mathbb{R}[x]\_\{\leq {\color{orange}d}\} = \bigoplus_{\text{Graphs $H$ with up to $\color{orange}d$ edges}}{\color{orange}M^{H,n}},$$
 
 where the sum is taken up to isomorphism, and 
 
-$$\mathbb{R}[H, n] := \mathrm{span}\left(S_n\left(\prod_{(i,j)\in E(H)}x_{ij} \right)\right).$$
+$${\color{orange}M^{H,n}} := \mathrm{span}\left(S_n\left(x^{E(H)} \right)\right).$$
 
 </div>
 <div class="fragment fade-in" data-fragment-index="1">
@@ -1021,7 +1066,7 @@ How do we decompose these <span style="color:orange">"Graph-modules"</span>?
 
 <div class="r-stack">
 <div class="fragment fade-out" data-fragment-index="1">
-Decomposing the $S_n$-modules $\mathbb{R}[H, n]$ into <span style="color:orange">Specht modules</span> can be <span style="color:orange">easy in some cases:</span>
+Decomposing the $S_n$-modules $M^{H,n}$ into <span style="color:orange">Specht modules</span> can be <span style="color:orange">easy in some cases:</span>
 
 ![](Pic_PathModule.svg)
 
@@ -1034,7 +1079,7 @@ by
 
 <div class="fragment fade-out" data-fragment-index="3">
 <div class="fragment fade-in" data-fragment-index="1">
-In most cases <span style="color:red">we cannot find an isomorphism</span> between $\mathbb{R}[H, n]$ and a Permutation module.
+In most cases <span style="color:red">we cannot find an isomorphism</span> between $M^{H,n}$ and a Permutation module.
 
 <div class="fragment" data-fragment-index="2">
 But we can always find isomorphisms to <span style="color:orange">quotients of permutation modules</span>, for example
@@ -1050,7 +1095,7 @@ But we can always find isomorphisms to <span style="color:orange">quotients of p
 
 In general, we have
 
-$$\mathbb{R}[H,n] \simeq M^{(n-|V(H)|,1,\ldots, 1)} \color{orange} / \mathrm{Aut}(H),$$
+$${\color{orange}M^{H,n}} \simeq M^{(n-|V(H)|,1,\ldots, 1)} \color{orange} / \mathrm{Aut}(H),$$
 
 where the automorphisms of $H$ <span style="color:orange">act on the rows of tabloids</span> in the Permutation module.
 
@@ -1202,6 +1247,34 @@ A Stabilizer-chain of $G$ can be found using the <span style="color:orange">Schr
 
 ----
 
+### Example
+
+While $\color{orange}M^{(4,2,2)}$ decomposes into $\color{orange}14$ Specht-modules,
+\begin{align} 
+{\color{orange}M^{(4,2,2)}}/ \langle(2\enspace 3)\rangle=& S^{(4,2,2)}\oplus S^{(4,4)}\\\\
+&\oplus S^{(5,2,1)}\oplus S^{(5,3)}\\\\
+&\oplus 2S^{(6,2)}\oplus S^{(7,1)}\\\\
+&\oplus S^{(8)}
+\end{align}
+only decomposes into $\color{orange}8$.
+
+----
+
+### The decomposition stabilizes
+
+Once ${\color{orange}n}$ is big enough, the decomposition does not change anymore:
+\begin{align} 
+M^{({\color{orange}n}-4,2,2)}/ \langle(2\enspace 3)\rangle=& S^{({\color{orange}n}-4,2,2)}\oplus S^{({\color{orange}n}-4,4)}\\\\&\oplus S^{({\color{orange}n}-3,2,1)}
+\oplus S^{({\color{orange}n}-3,3)}\\\\&\oplus 2S^{({\color{orange}n}-2,2)}
+\oplus S^{({\color{orange}n}-1,1)}\\\\&\oplus S^{({\color{orange}n})}
+\end{align}
+
+<div class="fragment" data-fragment-index="1">
+The <span style="color:orange">block sizes</span> are independent of ${\color{orange}n}$! Under the right normalization, <span style="color:orange">coefficients converge as $n\to\infty$.</span>
+</div>
+
+----
+
 ### Interpretation: Specht-Flags
 
 <div class="r-stack">
@@ -1263,7 +1336,7 @@ we can now evaluate the symmetrization groups to obtain a linear combination of 
 </div>
 
 <div class="fragment fade-in" data-fragment-index="5">
-We can calculate these products efficiently with help of a generalized version of the algorithm of <span style="color:orange">Dion Gijswijt</span> or the algorithm of <span style="color:orange">Sven Polak</span>.
+We can calculate these products efficiently with help of a generalized version of the algorithm of <span style="color:orange">Dion Gijswijt</span> or the algorithm of <span style="color:orange"> Litjens, Polak, and Schrijver</span>.
 
 </div>
 
@@ -1303,7 +1376,9 @@ The $\color{green}T$'th level of Razborov's hierarchy is equivalent to optimizin
 
 $${\color{red}[x]}^T X  {\color{red}[x]},$$
 
-where ${\color{red}[x]}$ contains Flags with $\color{orange}a$ labels in $\\{1,\ldots, {\color{green}T}\\}$ and at most $\lfloor ({\color{green}T}-{\color{orange}a}) / 2\rfloor$ unlabeled vertices. <span style="color:orange">Furthermore we need another decomposition condition.</span>
+where ${\color{red}[x]}$ contains Flags with $\color{orange}a$ labels in $\\{1,\ldots, {\color{green}T}\\}$ and at most $\lfloor ({\color{green}T}-{\color{orange}a}) / 2\rfloor$ unlabeled vertices.
+
+<span style="color:orange">Additionally we need another decomposition condition.</span>
 </div>
 
 <!-- STACK 3 -->
@@ -1312,7 +1387,7 @@ where ${\color{red}[x]}$ contains Flags with $\color{orange}a$ labels in $\\{1,\
 
 
 We require that $X$ can be decomposed into a <span style="color:orange">sum over rank $1$-matrices</span>
-$$X = X_1 + \ldots + X_k,$$
+$$X = X_1 + \ldots + X_k\quad\text{for some $k$},$$
 where each ${\color{red}[x]}^T X_i  {\color{red}[x]}$ contains no graph with more than ${\color{green}T}$ vertices.
 
 

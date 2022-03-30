@@ -68,7 +68,7 @@
 % \usepackage{imakeidx}
 % \makeindex[intoc]
 
-\newcommand{\GraphPoly}[2]{\mathbb{R}\left[#1,#2\right]}
+\newcommand{\GraphPoly}[2]{M^{#1,#2}}
 
 \usepackage{pgf,tikz,pgfplots}
 \usetikzlibrary{shapes.geometric, graphs, fit, positioning}
@@ -81,12 +81,12 @@
     }
 }
 
-\newcommand{\FlagGraph}[3][very thick,white,scale=1.45]{
+\newcommand{\FlagGraph}[3][very thick,white,scale=1]{
 \ifnum#2=2%
     %\tikz[baseline=(tmp1.south)]{
-    \tikz[baseline=0pt]{%(tmp1.center)]{
-        \node[#1, circle,inner sep=2pt,fill] (tmp1) at (0,-8pt){};
-        \node[#1,circle,inner sep=2pt,fill] (tmp2) at (0,24pt){};
+    \tikz[baseline=0pt,#1]{%(tmp1.center)]{
+        \node[#1, circle,inner sep=2pt,fill] (tmp1) at (0,-4pt){};
+        \node[#1,circle,inner sep=2pt,fill] (tmp2) at (0,12pt){};
         \ifx#3\empty%
         \else
             \draw[#1] (0,-4pt) -- (0,12pt);
@@ -106,7 +106,7 @@
 \fi
 }
 
-\newcommand{\FlagGraphNumb}[4][very thick, white, scale=1.45]{
+\newcommand{\FlagGraphNumb}[4][very thick, white, scale=1]{
 \ifnum#2=2%
     \tikz[baseline=3pt]{%(tmp2.center)]{
         \ifx#3\empty%
