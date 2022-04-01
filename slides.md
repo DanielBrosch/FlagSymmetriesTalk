@@ -1331,7 +1331,9 @@ Here, this defines a <span style="color:orange">product</span> between <span sty
 
 <img class="r-stretch" src="Pic_SpechtFlags.svg">
 
-we can now evaluate the symmetrization groups to obtain a linear combination of graphs.
+<img class="r-stretch" src="Pic_SpechtFlagEval.svg">
+
+<span style="color:orange">If the sizes of the vertex groups differ, this product is zero!</span>
 
 </div>
 
@@ -1450,7 +1452,7 @@ We optimize over $\{0,1\} = \mathbb{Z}_2$, which is <span style="color:orange">n
 
 <img class="r-stretch" src="Pic_BreakingSchurs.svg">
 
-Both modules are <span style="color:orange">isomorphic</span> to the module $M^{(1,1)}$, but also <span style="color:orange">orthogonal</span> to each other, as $x_{1,2}(1-x_{1,2}) = 0$.
+Both modules are <span style="color:orange">isomorphic</span> to the module $M^{(1,1)}$, but also <span style="color:orange">orthogonal</span> to each other, as $x_{12}(1-x_{12}) = 0$.
 </div>
 
 <div class="fragment fade-in" data-fragment-index="3">
@@ -1481,8 +1483,96 @@ In the setting of (undirected) graphs we have
   \end{equation}
   and
   \begin{equation}
-    \mathrm{Raz} _{\color{green}T} \geq \mathrm{Las} _{2\binom{{\color{green}T}}{2}}.
+    \mathrm{Raz} _{\color{green}T} \geq \mathrm{Las} _{2\binom{{\color{green}T}}{2}},
   \end{equation}
+where <span style="color:orange">lower means better</span>.
+---
+
+### Graph-profiles
+
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="1">
+
+Let $\color{orange}G$ and $\color{green}H$ be two (Quantum-)Graphs.
+
+The <span style="color:orange">Graph-profile</span> of $\color{orange}G$ and $\color{green}H$ is the set of possible values
+
+$$\left\lbrace (p(\mathcal{G}, {\color{orange}G} ), p(\mathcal{G}, {\color{green}H} )) : \mathcal{G} \text{ sequence of graphs}\right\rbrace.$$
+
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+
+<span style="color:orange">Razborov</span> calculates the <span style="color:orange">triangle</span>-<span style="color:green">edge</span> graph profile [Graphic by <span style="color:orange">Blekherman, Raymond, Singh, Thomas</span>]:
+
+<img src="TriangleProfile.png" width="322" height="282">
+
+<!-- <img class="plain" src="TriangleProfile.png"> -->
+
+<!-- ![](TriangleProfile.png) -->
+
+
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="2">
+
+We can find an <span style="color:orange">outer approximation</span> of graph profiles by solving
+
+$$\max \int_0^1 f \text{ s.t. } {\color{orange}G} - f({\color{green}H}) \geq 0,$$
+
+for a lower bound, where $f$ is a <span style="color:orange">univariate</span> polynomial. We solve a similar problem for an upper bound.
+
+
+</div>
+
+<div class="fragment fade-in-then-out" data-fragment-index="3">
+
+One function is not enough:
+
+<center>
+<iframe data-src="Pic_ProfileProblem.html" width="800" height="600" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="margin-bottom:5px; display:block;" ></iframe>
+<center/>
+
+</div>
+<div class="fragment fade-in" data-fragment-index="4">
+
+
+Cutting $[0,1]$ into many intervals works well:
+
+<center>
+<iframe data-src="Pic_ProfileSolution.html" width="800" height="600" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="margin-bottom:5px; display:block;" ></iframe>
+<center/>
+
+</div>
+</div>
+
+----
+
+
+<img class="r-stretch" src="./graphProfilesMatrix.png">
+
+----
+
+## Harmonic Flags
+
+<center>
+<iframe data-src="Pic_ProfileP2E.html" width="800" height="600" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="margin-bottom:5px; display:block;" ></iframe>
+<center/>
+
+----
+
+## Harmonic Flags
+
+<center>
+<iframe data-src="Pic_ProfileP3E.html" width="800" height="600" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="margin-bottom:5px; display:block;" ></iframe>
+<center/>
+
+
+
+
+
+
+
+
+
 
 ---
 

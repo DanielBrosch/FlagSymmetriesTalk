@@ -27,7 +27,7 @@ $$\require{color}$$
 
 ### Daniel Brosch
 <!-- #### Tilburg University -->
-March 28, 2022
+April 1, 2022
 </script></section><section  data-markdown><script type="text/template">
 ## Contents
 
@@ -38,7 +38,6 @@ March 28, 2022
 - Flag-Algebras <!-- .element: class="fragment" data-fragment-index="5" -->
 - Lasserre style hierarchy <!-- .element: class="fragment" data-fragment-index="6" -->
 - Razborov style hierarchy <!-- .element: class="fragment" data-fragment-index="7" -->
-- Advanced ideas <!-- .element: class="fragment" data-fragment-index="8" -->
 
 <div class="r-stack">
 
@@ -721,7 +720,7 @@ $$H:\mathcal{G}\mapsto p(\mathcal{G},H).$$
 </div>
 <div class="fragment fade-in" data-fragment-index="3">
 
-We can now fix (<span style="color:orange">flag</span>) certain positions of the randomly chosen permutations $\sigma_i$, and extend the <span style="color:orange">gluing</span> operation to <span style="color:orange">partially labeled graphs (Flags)</span>:
+We can now restrict the randomly chosen permutations $\sigma_i$ to fix (<span style="color:orange">flag</span>) some vertices, and extend the <span style="color:orange">gluing</span> operation to <span style="color:orange">partially labeled graphs (Flags)</span>:
 
 ![](Pic_FlagExample.svg)
 
@@ -753,7 +752,7 @@ We can <span style="color:orange">average</span> Flags over all choices of label
 <p><img src="Pic_FlagSOS3.svg" alt=""></p>
 <div class="fragment fade-in" data-fragment-index="4">
 
-<p>As for <span style="color:orange">polynomial optimization</span>, we can solve Flag-SOS using <span style="color:orange">semidefinite programming</span>.</p>
+<p>As for <span style="color:orange">polynomial optimization</span>, we can model Flag-SOS using <span style="color:orange">semidefinite programming</span>.</p>
 </div>
 </div>
 </div></aside></script></section><section data-markdown><script type="text/template">
@@ -804,7 +803,50 @@ We can exploit this symmetry!
 </div>
 
 <aside class="notes"><p>Monomials = fully labeled graphs. Action corresponds to permuting labels.</p>
-</aside></script></section></section><section ><section data-markdown><script type="text/template">
+</aside></script></section></section><section  data-markdown><script type="text/template">
+## Main contributions
+
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="1">
+
+We fully <span style="color:orange">exploit the symmetries</span> of two hierarchies:
+
+- <span style="color:orange">Lasserre</span> hierarchy for Flags with <span style="color:orange">few edges</span>       
+
+- <span style="color:orange">Razborov</span> hierarchy for Flags with <span style="color:orange">few vertices</span>     
+
+</div>
+
+<div class="fragment fade-out" data-fragment-index="5">
+<div class="fragment fade-in" data-fragment-index="1">
+
+We lay the groundwork for a few novel ideas:
+
+
+<span class="fragment" data-fragment-index="2">Extension of Flag-Algebras to <span style="color:orange">degenerate extremal combinatorics</span>.</span>
+
+<div class="fragment" data-fragment-index="3">
+
+A <span style="color:orange">harmonic basis</span> and <span style="color:orange">Fourier decomposition</span> of Flags.
+
+</div>
+
+<div class="fragment" data-fragment-index="4">
+
+A generalization of Razborov's <span style="color:orange">partial derivatives</span> of Flags.
+
+</div>
+</div>
+</div>
+<div class="fragment" data-fragment-index="5">
+A Julia software package implementing all hierarchies for <span style="color:orange">arbitrary Flags</span> will be available soon.
+</div>
+
+
+</div>
+
+
+</script></section><section ><section data-markdown><script type="text/template">
 ## Lasserre style hierarchy
 #### Prioritizing Flags with <span style="color:orange">few edges</span>
 
@@ -833,6 +875,7 @@ $${\color{red}[x]}^T X  {\color{red}[x]},$$
 where $X\succcurlyeq 0$ and ${\color{red}[x]}$ is a basis of 
 $$ \mathbb{R}[x]_{\leq {\color{orange}d}}.$$
 
+
 </div>
 
 </div>
@@ -848,7 +891,7 @@ $${\color{red}[x]} = \\{H : H \text{ graph with at most $\color{orange}d$ edges}
 
 
 </script></section><section data-markdown><script type="text/template">
-### Symmetry reduction
+### Reduction strategy
 
 <div class="r-stack">
 <div class="fragment fade-out" data-fragment-index="3">
@@ -930,11 +973,11 @@ and then further decompose each Permutation module into Specht modules.
 <div class="fragment fade-out" data-fragment-index="1">
 Let's attempt the same in the case of graphs. We can first decompose $\mathbb{R}[x]_{\leq {\color{orange}d}}$ into <span style="color:orange">spans of orbits of monomials</span>:
 
-$$\mathbb{R}[x]\_\{\leq {\color{orange}d}\} = \bigoplus_{\text{Graphs $H$ with up to $\color{orange}d$ edges}}\mathbb{R}[H, n],$$
+$$\mathbb{R}[x]\_\{\leq {\color{orange}d}\} = \bigoplus_{\text{Graphs $H$ with up to $\color{orange}d$ edges}}{\color{orange}M^{H,n}},$$
 
 where the sum is taken up to isomorphism, and 
 
-$$\mathbb{R}[H, n] := \mathrm{span}\left(S_n\left(\prod_{(i,j)\in E(H)}x_{ij} \right)\right).$$
+$${\color{orange}M^{H,n}} := \mathrm{span}\left(S_n\left(x^{E(H)} \right)\right).$$
 
 </div>
 <div class="fragment fade-in" data-fragment-index="1">
@@ -956,7 +999,7 @@ How do we decompose these <span style="color:orange">"Graph-modules"</span>?
 
 <div class="r-stack">
 <div class="fragment fade-out" data-fragment-index="1">
-Decomposing the $S_n$-modules $\mathbb{R}[H, n]$ into <span style="color:orange">Specht modules</span> can be <span style="color:orange">easy in some cases:</span>
+Decomposing the $S_n$-modules $M^{H,n}$ into <span style="color:orange">Specht modules</span> can be <span style="color:orange">easy in some cases:</span>
 
 ![](Pic_PathModule.svg)
 
@@ -969,7 +1012,7 @@ by
 
 <div class="fragment fade-out" data-fragment-index="3">
 <div class="fragment fade-in" data-fragment-index="1">
-In most cases <span style="color:red">we cannot find an isomorphism</span> between $\mathbb{R}[H, n]$ and a Permutation module.
+In most cases <span style="color:red">we cannot find an isomorphism</span> between $M^{H,n}$ and a Permutation module.
 
 <div class="fragment" data-fragment-index="2">
 But we can always find isomorphisms to <span style="color:orange">quotients of permutation modules</span>, for example
@@ -985,7 +1028,7 @@ But we can always find isomorphisms to <span style="color:orange">quotients of p
 
 In general, we have
 
-$$\mathbb{R}[H,n] \simeq M^{(n-|V(H)|,1,\ldots, 1)} \color{orange} / \mathrm{Aut}(H),$$
+$${\color{orange}M^{H,n}} \simeq M^{(n-|V(H)|,1,\ldots, 1)} \color{orange} / \mathrm{Aut}(H),$$
 
 where the automorphisms of $H$ <span style="color:orange">act on the rows of tabloids</span> in the Permutation module.
 
@@ -1098,7 +1141,6 @@ in $\mathcal{O}({\color{orange}k}^2)$ steps, where $\color{orange}k$ is the numb
 <div class="fragment fade-in-then-out" data-fragment-index="1">
 Most of the work <span style="color:orange">is independent of $T$</span>.
 
-<span><br/></span>
 
 <div class="r-frame">
 
@@ -1106,7 +1148,7 @@ This allows us to calculate an <span style="color:orange"> $k\times k$ matrix re
 
 $$ \vartheta_T \mapsto \vartheta_{\sigma(T)}$$
 
-in $\mathcal{O}({\color{orange}k}^2)$.
+in $\mathcal{O}({\color{orange}k}^2)$ steps.
 
 </div>
 </div>
@@ -1127,6 +1169,30 @@ A Stabilizer-chain of $G$ can be found using the <span style="color:orange">Schr
 
 </script></section><section data-markdown><script type="text/template">
 <img class="r-stretch" src="Pic_Algo.svg">
+</script></section><section data-markdown><script type="text/template">
+### Example
+
+While $\color{orange}M^{(4,2,2)}$ decomposes into $\color{orange}14$ Specht-modules,
+\begin{align} 
+{\color{orange}M^{(4,2,2)}}/ \langle(2\enspace 3)\rangle=& S^{(4,2,2)}\oplus S^{(4,4)}\\\\
+&\oplus S^{(5,2,1)}\oplus S^{(5,3)}\\\\
+&\oplus 2S^{(6,2)}\oplus S^{(7,1)}\\\\
+&\oplus S^{(8)}
+\end{align}
+only decomposes into $\color{orange}8$.
+</script></section><section data-markdown><script type="text/template">
+### The decomposition stabilizes
+
+Once ${\color{orange}n}$ is big enough, the decomposition does not change anymore:
+\begin{align} 
+M^{({\color{orange}n}-4,2,2)}/ \langle(2\enspace 3)\rangle=& S^{({\color{orange}n}-4,2,2)}\oplus S^{({\color{orange}n}-4,4)}\\\\&\oplus S^{({\color{orange}n}-3,2,1)}
+\oplus S^{({\color{orange}n}-3,3)}\\\\&\oplus 2S^{({\color{orange}n}-2,2)}
+\oplus S^{({\color{orange}n}-1,1)}\\\\&\oplus S^{({\color{orange}n})}
+\end{align}
+
+<div class="fragment" data-fragment-index="1">
+The <span style="color:orange">block sizes</span> are independent of ${\color{orange}n}$! Under the right normalization, <span style="color:orange">coefficients converge as $n\to\infty$.</span>
+</div>
 </script></section><section data-markdown><script type="text/template">
 ### Interpretation: Specht-Flags
 
@@ -1184,12 +1250,14 @@ Here, this defines a <span style="color:orange">product</span> between <span sty
 
 <img class="r-stretch" src="Pic_SpechtFlags.svg">
 
-we can now evaluate the symmetrization groups to obtain a linear combination of graphs.
+<img class="r-stretch" src="Pic_SpechtFlagEval.svg">
+
+<span style="color:orange">If the sizes of the vertex groups differ, this product is zero!</span>
 
 </div>
 
 <div class="fragment fade-in" data-fragment-index="5">
-We can calculate these products with help of a generalized version of the algorithm of Dion Gijswijt or Sven Polak.
+We can calculate these products efficiently with help of a generalized version of the algorithm of <span style="color:orange">Dion Gijswijt</span> or the algorithm of <span style="color:orange"> Litjens, Polak, and Schrijver</span>.
 
 </div>
 
@@ -1223,7 +1291,9 @@ The $\color{green}T$'th level of Razborov's hierarchy is equivalent to optimizin
 
 $${\color{red}[x]}^T X  {\color{red}[x]},$$
 
-where ${\color{red}[x]}$ contains Flags with $\color{orange}a$ labels in $\\{1,\ldots, {\color{green}T}\\}$ and at most $\lfloor ({\color{green}T}-{\color{orange}a}) / 2\rfloor$ unlabeled vertices. <span style="color:orange">Furthermore we need another decomposition condition.</span>
+where ${\color{red}[x]}$ contains Flags with $\color{orange}a$ labels in $\\{1,\ldots, {\color{green}T}\\}$ and at most $\lfloor ({\color{green}T}-{\color{orange}a}) / 2\rfloor$ unlabeled vertices.
+
+<span style="color:orange">Additionally we need another decomposition condition.</span>
 </div>
 
 <!-- STACK 3 -->
@@ -1232,7 +1302,7 @@ where ${\color{red}[x]}$ contains Flags with $\color{orange}a$ labels in $\\{1,\
 
 
 We require that $X$ can be decomposed into a <span style="color:orange">sum over rank $1$-matrices</span>
-$$X = X_1 + \ldots + X_k,$$
+$$X = X_1 + \ldots + X_k\quad\text{for some $k$},$$
 where each ${\color{red}[x]}^T X_i  {\color{red}[x]}$ contains no graph with more than ${\color{green}T}$ vertices.
 
 
@@ -1291,7 +1361,7 @@ We optimize over $\{0,1\} = \mathbb{Z}_2$, which is <span style="color:orange">n
 
 <img class="r-stretch" src="Pic_BreakingSchurs.svg">
 
-Both modules are <span style="color:orange">isomorphic</span> to the module $M^{(1,1)}$, but also <span style="color:orange">orthogonal</span> to each other, as $x_{1,2}(1-x_{1,2}) = 0$.
+Both modules are <span style="color:orange">isomorphic</span> to the module $M^{(1,1)}$, but also <span style="color:orange">orthogonal</span> to each other, as $x_{12}(1-x_{12}) = 0$.
 </div>
 
 <div class="fragment fade-in" data-fragment-index="3">
@@ -1320,8 +1390,88 @@ In the setting of (undirected) graphs we have
   \end{equation}
   and
   \begin{equation}
-    \mathrm{Raz} _{\color{green}T} \geq \mathrm{Las} _{2\binom{{\color{green}T}}{2}}.
+    \mathrm{Raz} _{\color{green}T} \geq \mathrm{Las} _{2\binom{{\color{green}T}}{2}},
   \end{equation}
+where <span style="color:orange">lower means better</span>.</script></section></section><section ><section data-markdown><script type="text/template">
+### Graph-profiles
+
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="1">
+
+Let $\color{orange}G$ and $\color{green}H$ be two (Quantum-)Graphs.
+
+The <span style="color:orange">Graph-profile</span> of $\color{orange}G$ and $\color{green}H$ is the set of possible values
+
+$$\left\lbrace (p(\mathcal{G}, {\color{orange}G} ), p(\mathcal{G}, {\color{green}H} )) : \mathcal{G} \text{ sequence of graphs}\right\rbrace.$$
+
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+
+<span style="color:orange">Razborov</span> calculates the <span style="color:orange">triangle</span>-<span style="color:green">edge</span> graph profile [Graphic by <span style="color:orange">Blekherman, Raymond, Singh, Thomas</span>]:
+
+<img src="TriangleProfile.png" width="322" height="282">
+
+<!-- <img class="plain" src="TriangleProfile.png"> -->
+
+<!-- ![](TriangleProfile.png) -->
+
+
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="2">
+
+We can find an <span style="color:orange">outer approximation</span> of graph profiles by solving
+
+$$\max \int_0^1 f \text{ s.t. } {\color{orange}G} - f({\color{green}H}) \geq 0,$$
+
+for a lower bound, where $f$ is a <span style="color:orange">univariate</span> polynomial. We solve a similar problem for an upper bound.
+
+
+</div>
+
+<div class="fragment fade-in-then-out" data-fragment-index="3">
+
+One function is not enough:
+
+<center>
+<iframe data-src="Pic_ProfileProblem.html" width="800" height="600" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="margin-bottom:5px; display:block;" ></iframe>
+<center/>
+
+</div>
+<div class="fragment fade-in" data-fragment-index="4">
+
+
+Cutting $[0,1]$ into many intervals works well:
+
+<center>
+<iframe data-src="Pic_ProfileSolution.html" width="800" height="600" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="margin-bottom:5px; display:block;" ></iframe>
+<center/>
+
+</div>
+</div>
+</script></section><section data-markdown><script type="text/template">
+
+<img class="r-stretch" src="./graphProfilesMatrix.png">
+</script></section><section data-markdown><script type="text/template">
+## Harmonic Flags
+
+<center>
+<iframe data-src="Pic_ProfileP2E.html" width="800" height="600" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="margin-bottom:5px; display:block;" ></iframe>
+<center/>
+</script></section><section data-markdown><script type="text/template">
+## Harmonic Flags
+
+<center>
+<iframe data-src="Pic_ProfileP3E.html" width="800" height="600" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="margin-bottom:5px; display:block;" ></iframe>
+<center/>
+
+
+
+
+
+
+
+
+
 </script></section></section><section  data-markdown><script type="text/template">
 ### Advanced ideas
 

@@ -29,8 +29,8 @@ $$\tikz[baseline=(AB.center), scale=2]{
 
     \node[inner sep=10pt, fit=(AB) (C)] (spacing) {};
 } {\scalebox{2}{=}} \tikz[baseline=(AB.center), scale=2]{
-  \node[draw, very thick, circle, inner sep= 5pt] (A) at (0,0) {};
-  \node[draw, very thick, circle, inner sep= 5pt] (B) at (0,-1) {};
+  \node[draw, very thick, circle, inner sep= 2pt] (A) at (0,0) {\huge 1};
+  \node[draw, very thick, circle, inner sep= 2pt] (B) at (0,-1) {\huge 2};
   \node[draw, circle, circle, fill, inner sep= 5pt] (C) at (1, 0) {};
   \node[rounded corners=10pt, inner sep=5pt, fit=(A) (B)] (AB) {};
   \draw[very thick] (A) -- (B);
@@ -38,8 +38,8 @@ $$\tikz[baseline=(AB.center), scale=2]{
 
   \node[inner sep=10pt, fit=(AB) (C)] (spacing) {};
 } {\scalebox{2}{+}} \tikz[baseline=(AB.center), scale=2]{
-  \node[draw, very thick, circle, inner sep= 5pt] (A) at (0,0) {};
-  \node[draw, very thick, circle, inner sep= 5pt] (B) at (0,-1) {};
+  \node[draw, very thick, circle, inner sep= 2pt] (A) at (0,0) {\huge 1};
+  \node[draw, very thick, circle, inner sep= 2pt] (B) at (0,-1) {\huge 2};
   \node[draw, circle, circle, fill, inner sep= 5pt] (C) at (1, -1) {};
   \node[rounded corners=10pt, inner sep=5pt, fit=(A) (B)] (AB) {};
   \draw[very thick] (A) -- (B);
