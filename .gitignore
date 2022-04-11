@@ -11,3 +11,6 @@ package-lock.json
 *.loc 
 *.run.xml
 *.soc
+/_short
+/_static
+/_site
