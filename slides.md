@@ -1528,7 +1528,7 @@ for a lower bound, where $f$ is a <span style="color:orange">univariate</span> p
 One function is not enough:
 
 <center>
-<iframe data-src="Pic_ProfileProblem.html" width="800" height="600" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="margin-bottom:5px; display:block;" ></iframe>
+<iframe data-src="./Pic_ProfileProblem" width="800" height="600" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="margin-bottom:5px; display:block;" ></iframe>
 <center/>
 
 </div>
@@ -1538,7 +1538,7 @@ One function is not enough:
 Cutting $[0,1]$ into many intervals works well:
 
 <center>
-<iframe data-src="Pic_ProfileSolution.html" width="800" height="600" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="margin-bottom:5px; display:block;" ></iframe>
+<iframe data-src="./Pic_ProfileSolution" width="800" height="600" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="margin-bottom:5px; display:block;" ></iframe>
 <center/>
 
 </div>
@@ -1554,7 +1554,7 @@ Cutting $[0,1]$ into many intervals works well:
 ## Harmonic Flags
 
 <center>
-<iframe data-src="Pic_ProfileP2E.html" width="800" height="600" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="margin-bottom:5px; display:block;" ></iframe>
+<iframe data-src="./Pic_ProfileP2E" width="800" height="600" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="margin-bottom:5px; display:block;" ></iframe>
 <center/>
 
 ----
@@ -1562,7 +1562,7 @@ Cutting $[0,1]$ into many intervals works well:
 ## Harmonic Flags
 
 <center>
-<iframe data-src="Pic_ProfileP3E.html" width="800" height="600" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="margin-bottom:5px; display:block;" ></iframe>
+<iframe data-src="./Pic_ProfileP3E" width="800" height="600" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="margin-bottom:5px; display:block;" ></iframe>
 <center/>
 
 
