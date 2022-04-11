@@ -6,659 +6,18 @@ $$\require{color}$$
 <!-- reveal-md slides.md --theme night --static _site -->
 <!-- Then copy videos! -->
 <!-- and remove _asset paths -->
-## Symmetry reduced Flag-hierarchies
+## The Symmetries of Flag-Algebras
 
 <br/>
 
 ### Daniel Brosch
-<!-- #### Tilburg University -->
-April 1, 2022
-
----
-
-## Contents
-
-- Semidefinite programming <!-- .element: class="fragment" data-fragment-index="1"-->
-- Symmetry reduction basics <!-- .element: class="fragment" data-fragment-index="2" -->
-- Representation theory <!-- .element: class="fragment" data-fragment-index="3" -->
-<span class="fragment" data-fragment-index="4" style="color:orange">(of $S_n$) </span>
-- Flag-Algebras <!-- .element: class="fragment" data-fragment-index="5" -->
-- Lasserre style hierarchy <!-- .element: class="fragment" data-fragment-index="6" -->
-- Razborov style hierarchy <!-- .element: class="fragment" data-fragment-index="7" -->
-
-<div class="r-stack">
-
-$$ \inf\\{\langle C,X\rangle : \langle A_i, X\rangle = b_i \forall i, X\succcurlyeq 0\\} $$ <!-- .element: class="fragment fade-in-then-out" data-fragment-index="1"-->
-
-![](Pic_SymReduc.svg) <!-- .element: class="fragment fade-in-then-out" data-fragment-index="2"-->
-
-![](Pic_YoungTab.svg) <!-- .element: class="fragment fade-in-then-out" data-fragment-index="4"-->
-
-$$V = m_1S_1\oplus m_2S_2\oplus \ldots \oplus m_kS_k$$ <!-- .element: class="fragment fade-in-then-out" data-fragment-index="3"-->
-
-
-![](Pic_FlagExample.svg) <!-- .element: class="fragment fade-in-then-out" data-fragment-index="5"-->
-
-<img class="r-stretch" src="Pic_SpechtFlags.svg"><!-- .element: class="fragment fade-in-then-out" data-fragment-index="6"-->
-
-<img class="r-stretch" src="Pic_MaxCliques.svg"><!-- .element: class="fragment fade-in-then-out" data-fragment-index="7"-->
-
-</div>
----
-
-## Semidefinite programming
-
-<br />
-
-<div class="r-stack">
-
-$$ \inf_X\\{\langle C,X\rangle : \langle A_i, X\rangle = b_i \forall i, X\succcurlyeq 0\\} $$ <!-- .element: class="fragment fade-out" data-fragment-index="1" -->
-
-$$ \inf_X\\{\langle C,X\rangle : \langle A_i, X\rangle = b_i \forall i, \fcolorbox{orange}{black}{$X\succcurlyeq 0$}\\} $$ <!-- .element: class="fragment fade-in-then-out" data-fragment-index="1" -->
-
-</div> 
-
-----
-
-### The anatomy of an SDP
-
-<div class="r-stack">
-
-$$ \inf_X\\{\langle C,X\rangle : \langle A_i, X\rangle = b_i \forall i, X\succcurlyeq 0\\} $$ <!-- .element: class="fragment fade-out" data-fragment-index="1" -->
-
-$$ \inf_X\\{\langle {\color{orange}C},X\rangle : \langle {\color{orange}A_i}, X\rangle = b_i \forall i, X\succcurlyeq 0\\} $$ <!-- .element: class="fragment fade-in-then-out" data-fragment-index="1" -->
-
-$$ \inf_X\\{{\color{orange}\langle} C{\color{orange},}X{\color{orange}\rangle} : {\color{orange}\langle} A_i{\color{orange},}X{\color{orange}\rangle} = b_i \forall i, X\succcurlyeq 0\\} $$ <!-- .element: class="fragment fade-in-then-out" data-fragment-index="2" -->
-
-$$ \inf_X\\{\langle C,X\rangle : \langle A_i, X\rangle = b_i \forall i, \fcolorbox{orange}{black}{$X\succcurlyeq 0$}\\} $$ <!-- .element: class="fragment fade-in-then-out" data-fragment-index="3" -->
-
-$$ \inf_X\\{\langle C,X\rangle : \langle A_i, X\rangle = b_i \forall i, X\succcurlyeq 0\\} $$ <!-- .element: class="fragment fade-in-then-out" data-fragment-index="4" -->
-
-</div> 
-
-<br />
-
-<div class="r-stack">
-
-<div>$\color{orange} C, A_i\in\mathbb{S}^{n\times n}$ are symmetric data matrices </div> <!-- .element: class="fragment fade-in-then-out" data-fragment-index="1" -->
-
-<div>$\color{orange} \langle\cdot,\cdot\rangle$ denotes the matrix inner product: $$\langle A,B\rangle = \sum_{i,j=1}^n A_{ij} B_{ij}$$ </div> <!-- .element: class="fragment fade-in-then-out" data-fragment-index="2" -->
-
-$ \color{orange} X\succcurlyeq 0 $ means that $X$ is **positive semidefinite**: $$v^TXv\geq 0 \text{ for all vectors } v.$$  
-<!-- .element: class="fragment fade-in-then-out" data-fragment-index="3" -->
-
-SDPs are **linear optimization problems** over a **convex cone**. We can solve them in **polynomial time!**
-<!-- .element: class="fragment fade-in-then-out" data-fragment-index="4" -->
-</div> 
-
-----
-
-### SDPs for polynomial optimization
-
-<div class="r-stack">
-
-<span class="fragment fade-out" data-fragment-index="1">
-
-We often want to minimize a polynomial under some polynomial constraints:
-
-$$\min_x \\{{\color{green}f}(x): {\color{red}g_i}(x)\geq 0 \quad\forall i\\}.$$
-
-</span>
-
-<span class="fragment fade-in" data-fragment-index="1">
-We can rewrite this problem as 
-
-$$ \max_{\lambda, s} \\{\lambda : {\color{green}f}-\lambda = {\color{orange}s_0} + \sum_i {\color{orange}s_i} {\color{red}g_i} \geq 0\\},$$
-where the $\color{orange}s_j$ are **nonnegative polynomials**.
-</span>
-</div>
-
-----
-
-### Sums-of-Squares
-
-
-
-<span class="r-stack">
-<span class="fragment fade-out" data-fragment-index="1">
-
-We can relax the nonnegative polynomials $\color{orange}s_j$ to be **sums of squares** of polynomials:
-
-$${\color{orange}s_j}(x) = \sum_{t} p_t(x)^2 \geq 0.$$
-
-</span>
-
-<span class="fragment fade-in-then-out" data-fragment-index="1">
-
-Given a polynomial basis 
-$${\color{red}[x]}=\\{1, x_1, x_2, x_1^2, x_1x_2,\ldots\\}$$
-we can write the squared polynomials in the form
-\begin{align}
-p_t(x)^2 &= \left({\color{red}[x]}^Tv_t\right)^2\\\\
-&= {\color{red}[x]}^T\left(v_tv_t^T\right)  {\color{red}[x]}.
-\end{align}
-
-</span>
-
-<span class="fragment fade-in" data-fragment-index="2">
-
-$${\color{orange}s_j}(x) ={\color{red}[x]}^T\left(\sum_t  v_t v_t^T\right)  {\color{red}[x]} =  {\color{red}[x]}^T X  {\color{red}[x]},$$
-
-where $X$ is **positive semidefinite**.
-
-</span>
-
-</span>
-<span class="fragment fade-in" data-fragment-index="3" style="color:orange">
-Comparing coefficients leads to a standard SDP!
-</span>
-
-
-
----
-
-## SDP Symmetry reduction basics
-
-<br />
-
-![](Pic_SymReduc.svg) <!-- .element: class="r-stretch" -->
-
-----
-
-### What is a symmetry?
-
-
-<br />
-
-Let ${\color{orange}\sigma}$ be a **permutation** of $\\{1,\ldots, n\\}$. We let ${\color{orange}\sigma}$ act on the *indices of $X$ simultanously*:
-
-$${\color{orange}\sigma}(X) = \left(X_{{\color{orange}\sigma}(i){\color{orange}\sigma}(j)}\right)_{i,j=1}^n.$$
-
-<br />
-
-<span class="fragment fade-in" style="color:orange">If $X$ is positive semidefinite, then $\sigma(X)$ is as well!</span>
-
-----
-
-### When does an SDP have a symmetry?
-
- 
-<div class="r-stack">
-
-An SDP has symmetry ${\color{orange}\sigma}$, if ${\color{orange}\sigma}$ sends feasible solutions to feasible solutions with the same objective value. <!-- .element: class="fragment fade-out" data-fragment-index="1" -->
-
-<span class="fragment fade-in" data-fragment-index="1">
-
-
-This holds if for each constraint $\langle A_i,X\rangle=b_i$ there is a $j$ such that
- $${\color{orange}\sigma}(A_i)=A_j, \quad b_i=b_j$$
-and the objective is symmetric:
-$${\color{orange}\sigma}(C)=C.$$
-
-</span></div>
-
-
-----
-
-
-### How do we exploit symmetries?
-
-
-The set of all symmetries forms a **group ${\color{orange}G}$** of permutations. As the feasible set of an SDP is **convex**, we can **average** feasible solutions:
-
-$$\mathcal{R}(X) = \frac{1}{|{\color{orange}G}|} \sum_{{\color{orange}\sigma}\in {\color{orange}G}}{\color{orange}\sigma}(X)$$
-
-
-<span class="fragment fade-in" style="color:orange">
-
-$\mathcal{R}(X)$ is again feasible, with the same objective value as $X$!
-
-</span>
-
-----
-
-### Symmetric optimal solutions
-
-<div class="r-stack">
-
-<span class="fragment fade-out" data-fragment-index="1">
-If $X^*$ is an optimal solution, then so is $\mathcal{R}(X^*)$. This solution is <span style="color:orange">invariant under actions of ${\color{orange}G}$</span>:
-$${\color{orange}\sigma}(\mathcal{R}(X^*)) = \mathcal{R}(X^*). $$
-</span>
-<span class="fragment fade-in-then-out" data-fragment-index="1">
-
-We can restrict the SDP to optimize only over <span style="color:orange">invariant</span> matrices:
-\begin{align}
-\inf\enspace&\langle C,X\rangle \\\\
-\text{s.t.}\enspace& \langle A_i, X\rangle = b_i\quad \text{for all } i,\\\\
-& X\succcurlyeq 0,\\\\
-& {\color{orange}\mathcal{R}(X)=X}.\\\\
-\end{align}
-
-</span>
-<span class="fragment fade-in-then-out" data-fragment-index="2">
-
-In the case of ${\color{orange}G}=D_{10}=C_5\times Z_2$ we can restrict $X$ to have the **pattern**
-
-$$\begin{pmatrix}
-{\color{red}A} & {\color{orange}B} & {\color{green}C} & {\color{green}C} & {\color{orange}B}\\\\
-{\color{orange}B} & {\color{red}A} & {\color{orange}B} & {\color{green}C} & {\color{green}C}\\\\
-{\color{green}C} & {\color{orange}B} & {\color{red}A} & {\color{orange}B} & {\color{green}C}\\\\
-{\color{green}C} & {\color{green}C} & {\color{orange}B} & {\color{red}A} & {\color{orange}B} \\\\
-{\color{orange}B} & {\color{green}C} & {\color{green}C} & {\color{orange}B} & {\color{red}A}\\\\
-\end{pmatrix}$$ 
-</span>
-</div>
-
-----
-
-### Block-diagonalization
-<div class="r-stack">
-
-<span class="fragment fade-out" data-fragment-index="1">
-
-$$\tiny\begin{pmatrix}
-{\color{red}A} & {\color{orange}B} & {\color{green}C} & {\color{green}C} & {\color{orange}B}\\\\
-{\color{orange}B} & {\color{red}A} & {\color{orange}B} & {\color{green}C} & {\color{green}C}\\\\
-{\color{green}C} & {\color{orange}B} & {\color{red}A} & {\color{orange}B} & {\color{green}C}\\\\
-{\color{green}C} & {\color{green}C} & {\color{orange}B} & {\color{red}A} & {\color{orange}B} \\\\
-{\color{orange}B} & {\color{green}C} & {\color{green}C} & {\color{orange}B} & {\color{red}A}\\\\
-\end{pmatrix}
-$$
-
-is positive semidefinite if and only if
-
-* ${\color{red}A} + {\color{orange}B} + {\color{green}C} \geq 0$,
-* ${\color{red}A} +\frac{\sqrt{5}-1}{4}{\color{orange}B} - \frac{\sqrt{5}+1}{4}{\color{green}C} \geq 0$,
-* ${\color{red}A} -\frac{\sqrt{5}+1}{4}{\color{orange}B}+\frac{\sqrt{5}-1}{4}{\color{green}C} \geq 0$.
-
-</span>
-<span class="fragment fade-in" data-fragment-index="1">
-In general we may still get multiple bigger blocks
-
-![](Pic_SymReduc.svg)
-
-but <span style="color:orange">the sum of the block sizes is often significantly lower than $n$!</span>
-
-<span class="fragment fade-in" data-fragment-index="2" style="color:red">
-How do we find the block-diagonalization?
-</span>
-
-</span>
-</div>
-
-
-
-Note: This linearizes the problem.
-
----
-
-## Representation theory 
-
-$$V = m_1W_1\oplus m_2W_2\oplus \ldots \oplus m_kW_k$$
-
-----
-
-### A ${\color{orange}G}$-module is
- 
-- a **vectorspace** $V$,
-- a **group** ${\color{orange}G}$, and
-- a **group homomorphism** $\rho:{\color{orange}G}\to \mathrm{GL}(V)$.
-
-<br/><br/>
-
-Together, they let ${\color{orange}G}$ act on vectors:
-
-$$\color{orange}\boxed{gv := \rho(g)v}$$
-
-Note: The image of the group homomorphism is a matrix representation, if one fixes a basis.
-
-----
-### Example: ${\color{orange}S_n}$-module
-
-The vectorspace of polynomials up to degree $d$ in $n$ variables:
-$$\mathbb{R}[x_1,\ldots,x_n]_{\leq d}$$
-is an ${\color{orange}S_n}$-module by defining
-
-$${\color{orange}\sigma}(x_i) := x_{{\color{orange}\sigma}(i)}$$
-
-and extending the operation to polynomials.
-
-Note: Depending on if a left or right action is used for permutations, we may need to invert sigma.
-
-----
-
-### Irreducible modules
-
-We call a ${\color{orange}G}$-module $V$ **irreducible**, if $V$ and $\\{0\\}$ are the only submodules of $V$.
-
-<br />
-
-<span class="fragment fade-in">
-<div class="r-frame">
-The $\color{orange}S_2$-module 
-
-$$V = \mathrm{span}\\{1,x_1,x_2\\}$$
-
-is not irreducible:
-
-\begin{align}
-V =& \enspace{\color{orange}\mathrm{span}\\{1\\}} \oplus {\color{orange}\mathrm{span}\\{x_1+x_2\\}}\\\\&\oplus {\color{green}\mathrm{span}\\{x_1 - x_2\\}}\\\\
-\end{align}
-
-</div>
-</span>
-
-Note: First two submodules are isomorphic!
-
-----
-
-### Maschke's Theorem
-
-<span class="r-stack">
-<span class="fragment fade-out" data-fragment-index="1">
-
-We can decompose $\color{orange}G$-modules into irreducible submodules:
-
-$$ V = W_1\oplus \ldots \oplus W_k.$$
-
-</span>
-<span class="fragment fade-in-then-out" data-fragment-index="1">
-
-Sorting by equivalent (isomorphic) submodules, we see that 
-
-$$V\simeq {\color{orange}m_1}S_1 \oplus \ldots\oplus {\color{orange}m_h}S_h,$$
-
-where the ${\color{orange}m_i}$ are nonnegative integers, and the $S_i$ form a set of **all irreducible $G$-modules** up to isomorphism. 
-
-</span>
-
-<span class="fragment fade-in" data-fragment-index="3">
-
-\begin{align}
-V =& \enspace \mathrm{span}\\{1,x_1,x_2\\}\\\\
-=&\enspace{\color{orange}\mathrm{span}\\{1\\}} \oplus {\color{orange}\mathrm{span}\\{x_1+x_2\\}}\\\\&\oplus {\color{green}\mathrm{span}\\{x_1 - x_2\\}}\\\\
-\simeq&\enspace {\color{orange}2S^{(2)}} \oplus {\color{green}S^{(1,1)}}\\\\ 
-\end{align}
-
-The irreducible modules $S^\lambda$ of $S_n$ are called **Specht modules**.
-
-</span>
-</span>
-
-----
-
-### Schur's Lemma
-#### The main ingredient of block-diagonalization
+#### Tilburg University
 
 <br/>
-
-<div class="r-frame">
-
-Let $\color{orange}M$, $\color{orange}N$ be two **irreducible** $G$-modules over a ring $R$. Let ${\color{limegreen}\varphi} : {\color{orange}M}\to {\color{orange}N}$ be a homomorphism.
-
-- If $\color{orange}M$ and $\color{orange}N$ are not isomorphic, then ${\color{limegreen}\varphi} \equiv 0$. <!-- .element: class="fragment"-->
-- If ${\color{orange}M}\simeq {\color{orange}N}$ and $R$ is an algebraically closed field, then ${\color{limegreen}\varphi} = c\mathrm{I}$ for a $c\in R$. <!-- .element: class="fragment"-->
-
-</div>
-
-----
-
-### Symmetry adapted basis
-
-A "<span style="color:green">nice</span>" basis, which respects the decomposition
- $$V\simeq {\color{orange}m_1}S_1 \oplus \ldots\oplus {\color{orange}m_h}S_h,$$
-is called **symmetry adapted basis** of $V$.
-
-<br/>
-
-"<span style="color:green">Nice</span>" essentially means that we choose the same basis in each copy of each $S_i$.
-
-----
-
-### Block-diagonalization
-
-<span class="r-stack">
-<span class="fragment fade-out" data-fragment-index="1">
-
-Let $G$ now act on $\mathbb{C}^n$ via $\sigma(e_i) = e_{\sigma(i)}$. Swapping the basis of the SDP to a symmetry adapted basis of $\mathbb{C}^n$ **block-diagonalizes** the SDP:
-
-
-</span>
-<span class="fragment fade-in" data-fragment-index="1">
-If $\mathbb{C}^n\simeq {\color{orange}m_1}S_1 \oplus \ldots\oplus {\color{orange}m_h}S_h,$
-
-we obtain <span style="color:orange">$h$ different blocks of sizes $\color{orange}m_1, \ldots, m_h$</span>
-
-each appearing with $\dim(S_i)$ identical copies.
-
-
-
-</span>
-</span>
-
-![](Pic_SymReduc.svg)
-
-Note: $G$ acts on the index space of $X$. We can delete the copies.
-
-
+April 12, 2022
 
 ---
-## Representation theory of ${\color{orange}S_n}$
 
-![](Pic_YoungTab.svg)
-
-----
-
-### Permutation modules
-
-<span class="r-stack">
-
-<span class="fragment fade-out" data-fragment-index="1">
-
-Let ${\color{orange}\lambda} = (\lambda_1,\ldots, \lambda_m)\in\mathbb{N}^m$ be a **partition** of $n$:
-
-- $\lambda_1 \geq \lambda_2\geq \ldots\geq \lambda_m>0$,
-- $\lambda_1+\ldots+\lambda_m = n$.
-
-</span>
-<span class="fragment fade-in-then-out" data-fragment-index="1">
-
-A **Young-tableau** of *shape* $\color{orange}\lambda$ consists of $n$ boxes, positioned on $m$ rows, with $\lambda_i$ boxes in row $i$, and filled bijectively with $\\{1,\ldots,n\\}$.
-
-<br/>
-
-![](Pic_YoungTabEx.svg)
-
-is a Young-tableau of shape $\color{orange}{(3,2)}$.
-
-</span>
-<span class="fragment fade-in-then-out" data-fragment-index="2">
-
-A **Young-tabl<ins>oid</ins>** is the *row-equivalence* class of a Young-tableau:
-
-![](Pic_YoungTabloidEx.svg)
-
-</span>
-<span class="fragment fade-in-then-out" data-fragment-index="3">
-
-Finally, a **Permutation module** of shape $\color{orange}\lambda$ is the $\color{orange}{S_n}$-module
-
-$$M^{\color{orange}\lambda} := \mathrm{span}_\mathbb{R}\\{ \text{Young-tabloids of shape } {\color{orange}\lambda}\\},$$
-
-where $\color{orange}{S_n}$ acts on the <span style="color:orange">entries</span> of each box individually:
-
-
-![](Pic_PermModEx.svg)
-
-</span>
-
-</span>
-
-----
-
-### Specht modules
-
-<span class="r-stack">
-<span class="fragment fade-out" data-fragment-index="1">
-
-We can determine an <span style="color:orange">irreducible</span> submodule of each $M^{\color{orange}\lambda}$, called **Specht module** of shape $\color{orange}\lambda$.
-
-</span>
-<span class="fragment fade-in-then-out" data-fragment-index="1">
-
-Specht modules are the span of **polytabloids** in $M^{\color{orange}\lambda}$. Let $t$ be a Young-tabl<ins>eau</ins> of shape ${\color{orange}\lambda}$. Then
-
-$$e_t:= \sum_{\sigma \in C_t}\mathrm{sgn}(\sigma)\\{\sigma t\\} \in M^{\color{orange}\lambda},$$
-
-where $C_t$ is the *column-stabilizer* of $t$.
-
-</span>
-<span class="fragment fade-in-then-out" data-fragment-index="2">
-
-For example, let $\color{orange}{\lambda=(4,2)}$, and 
-
-![](Pic_PolytabExA.svg)
-
-The *column-stabilizer* of $t$ is $C_t=S_{\color{orange}\\{1,5\\}}\times S_{\color{green}\\{2,6\\}}$, and the **polytabloid** of $t$ is:
-
-
-![](Pic_PolytabExB.svg)
-
-</span>
-
-<span class="fragment fade-in" data-fragment-index="3">
-
-Specht modules are the span of **polytabloids** in $M^{\color{orange}\lambda}$:
-
-
-$$S^{\color{orange}\lambda} := \mathrm{span}\\{e_t : t \text{ tableau of shape } {\color{orange}\lambda}\\} \subseteq M^{\color{orange}\lambda}$$
-
-<span class="fragment fade-in" data-fragment-index="4" style="color:orange">Specht modules are irreducible, and form a complete set of irreducible modules of $S_n$!</span>
-
-</span>
-</span>
-
-----
-
-#### Decomposing Permutation modules
-
-<div class="r-stack">
-<div class="fragment fade-out" data-fragment-index="1">
-
-Often, the main idea for block-diagonalizing problems with $\color{orange}{S_n}$-symmetry is:
-
-<br/>
-
-<div class="r-frame">
-
-- Decompose $V$ into copies of <span style="color:orange">Permutation modules</span>.
-- Decompose each Permutation module further into <span style="color:orange">Specht modules</span>.
-
-</div>
-
-<br/>
-
-The decomposition of Permutation modules is well understood!
-
-</div>
-
-
-<div class="fragment fade-out" data-fragment-index="3">
-<div class="fragment fade-in" data-fragment-index="1">
-
-We now allow **duplicate entries** in Young-tableaux. Given two partitions ${\color{orange}\lambda}$, ${\color{green}\mu}$ of $n$, we say that a tableau $t$ of <span style="color:orange">shape</span> ${\color{orange}\lambda}$ has <span style="color:green">content</span> ${\color{green}\mu}$, if $t$ has ${\color{green}{\mu_1}}$ ones, ${\color{green}{\mu_2}}$ twos, etc.
-
-<br />
-
-<div class="fragment fade-in" data-fragment-index="2"><div class="r-frame">
-
-![](Pic_YoungTableauEx.svg)
-
-is a tableau of <span style="color:orange">shape</span> ${\color{orange}{(3,2)}}$ and <span style="color:green">content</span>  ${\color{green}{(2,2,1)}}$.
-
-</div>
-</div>
-</div>
-</div>
-
-
-<div class="fragment fade-in-then-out" data-fragment-index="3">
-
-![](Pic_YoungTableauEx.svg)
-
-A Young-tableau is called <span style="color:orange">semistandard</span>, if its entries
-- <span style="color:orange">increase</span> in rows, and
-- <span style="color:orange">strictly increase</span> in columns. 
-
-
-</div>
-
-<div class="fragment fade-in-then-out" data-fragment-index="4">
-
-
-Semistandard Young-tableaux $T$ of <span style="color:orange">shape</span> ${\color{orange}\lambda}$ and content <span style="color:green">content</span> ${\color{green}\mu}$ give homomorphisms 
-$$\vartheta_T :  M^{\color{orange}\lambda}\to M^{\color{green}\mu}  $$
-by moving entries $t(i,j)$ to the row given by $T(i,j)$, and summing over the row equivalence class of $T$.
-
-
-</div>
-
-<div class="fragment fade-in-then-out" data-fragment-index="5">
-
-Let $T$ be the semistandard tableau
-
-![](Pic_YoungTabExColor.svg)
-
-of <span style="color:orange">shape</span> ${\color{orange}{(3,2)}}$ and <span style="color:green">content</span>  ${\color{green}{(2,2,1)}}$. Then
-
-
-![](Pic_SemistandardHom.svg)
-
-
-
-</div>
-
-
-<div class="fragment fade-out" data-fragment-index="8">
-<div class="fragment fade-in" data-fragment-index="6">
-
-These homomorphisms form a basis of the <span style="color:orange">multiplicity space</span> of $S^\lambda$ in $M^\mu$:
-
-$$\mathrm{Hom}(S^\lambda, M^\mu).$$
-
-
-<div class="fragment fade-in" data-fragment-index="7">
-The dimension of the multiplicity spaces are called <span style="color:orange">Kostka numbers $K_{\lambda\mu}$.</span>
-</div>
-
-</div>
-</div>
-
-<div class="fragment fade-in-then-out" data-fragment-index="8">
-
-We can now explicitly decompose Permutation modules in terms of Specht modules:
-
-$$\color{orange}M^\mu = \bigoplus_{\lambda} K_{\lambda\mu}S^\lambda.$$
-
-
-
-</div>
-
-<!-- <div class="fragment fade-in" data-fragment-index="9">
-
-
-
-\begin{align}
-M^{(2,1,1)} \simeq& S^{(4)} \oplus 2S^{(3,1)} \oplus S^{(2,2)}\oplus S^{(2,1,1)}.
-\end{align}
-
-</div> -->
-
-
-</div>
-
----
 
 ## Flag-Algebras
 
@@ -711,14 +70,16 @@ Note: Razborov unifies and generalizes ideas of many authors.
 
 To formally define the optimization problem, we let
 
-$$\mathcal{G} = (G_i)_{i\geq 1}$$
+$${\color{orange}\mathcal{G}} = ({\color{orange}G_i})_{i\geq 1}$$
 
-be a <span style="color:orange">sequence of graphs</span>, where graph $G_i$ has $i$ vertices.
+be a <span style="color:orange">sequence of graphs</span>, where each graph $\color{orange}G_i$ has $i$ vertices.
 
 <div class="fragment fade-in" data-fragment-index="1">
-The <span style="color:orange">density</span> of a graph $H$ in $\mathcal{G}$ is
-$$p(\mathcal{G}, H) := \lim_{i\to\infty} \mathbb{P}[\sigma_i(H) \text{ is a subgraph of }G_i],$$
-where $\sigma_i$ is a random permutation in $S_i$.
+<div class="r-frame">
+The <span style="color:orange">density</span> of a graph $\color{green}H$ in $\color{orange}\mathcal{G}$ is
+$$p({\color{orange}\mathcal{G}}, {\color{green}H}) := \lim_{i\to\infty} \mathbb{P}[{\color{red}\sigma_i}({\color{green}H}) \text{ is a subgraph of }{\color{orange}G_i}],$$
+where ${\color{red}\sigma_i}$ is a random permutation in $S_i$.
+</div>
 </div>
 </div>
 <div class="fragment fade-in" data-fragment-index="2">
@@ -807,7 +168,7 @@ As for <span style="color:orange">polynomial optimization</span>, we can model F
 </div>
 </div>
 
-----
+---
 
 ### Flags as (limits of) polynomials
 
@@ -818,7 +179,7 @@ Recently, **Raymond**, **Saunderson**, **Singh** and **Thomas** have proven a fa
 
 <br/>
 
-- Flags can be seen as limits of polynomials.
+- Flags can be seen as limits of sequences of polynomials.
 - <span style="color:orange">Partially</span> exploiting the polynomials' symmetries and taking the limit leads to Flag-SOS.
 
 <span style="color:orange">We fully exploit their symmetries!</span><!-- .element: class="fragment" data-fragment-index="1"-->
@@ -856,6 +217,29 @@ We can exploit this symmetry!
 </div>
 
 Note: Monomials = fully labeled graphs. Action corresponds to permuting labels.
+
+---
+
+### Main reduction idea:
+
+Formulate the problem as a <span style="color:orange">sequence</span> of highly <span style="color:orange">symmetric</span> polynomial optimization problems
+
+<br/>
+
+<div class="fragment">
+
+<span style="color:orange">Exploit</span> the symmetries for <span style="color:orange">each finite $n$</span>
+
+</div>
+
+<br/>
+
+<div class="fragment">
+
+The resulting hierarchies have block-sizes <span style="color:orange">independent of $n$</span>, we can <span style="color:orange">take the limit!</span>
+
+</div>
+
 
 ---
 
@@ -901,19 +285,244 @@ A Julia software package implementing all hierarchies for <span style="color:ora
 </div>
 
 
+---
+
+## SDP Symmetry reduction basics
+
+<br />
+
+![](Pic_SymReduc.svg) <!-- .element: class="r-stretch" -->
+
+----
+
+### Symmetric sums of squares
+
+
+$S_n$ acts here on the basis ${\color{red}[x]}$ of monomials.
+
+This action <span style="color:orange">permutes the rows and columns</span> of the <span style="color:orange">positive semidefinite matrix $X$</span> in the <span style="color:orange">SOS-term</span>
+
+\begin{align}
+{\color{orange}\sigma}({\color{red}[x]}^TX{\color{red}[x]}) &= {\color{orange}\sigma}({\color{red}[x]})^TX{\color{orange}\sigma}({\color{red}[x]})\\\\
+&= {\color{red}[x]}^T\left(X_{{\color{orange}\sigma}(m_1),{\color{orange}\sigma}(m_2)}\right)_{m_1,m_2\in {\color{red}[x]}}{\color{red}[x]}\\\\
+&= {\color{red}[x]}^T{\color{orange}\sigma}(X){\color{red}[x]}
+\end{align}
+
+
+
+<span class="fragment fade-in" style="color:orange">If $X$ is positive semidefinite, then ${\color{orange}\sigma}(X)$ is as well!</span>
+
+----
+
+
+### How do we exploit symmetries?
+
+As the feasible set of an SDP is **convex**, we can **average** feasible solutions:
+
+$$\mathcal{R}(X) = \frac{1}{|{\color{orange}G}|} \sum_{{\color{orange}\sigma}\in {\color{orange}G}}{\color{orange}\sigma}(X)$$
+
+
+<span class="fragment fade-in" style="color:orange">
+
+$\mathcal{R}(X)$ is again feasible, with the same objective value as $X$!
+
+</span>
+
+----
+
+### Symmetric optimal solutions
+
+<div class="r-stack">
+
+<span class="fragment fade-out" data-fragment-index="1">
+If $X^*$ is an optimal solution, then so is $\mathcal{R}(X^*)$. This solution is <span style="color:orange">invariant under actions of ${\color{orange}G}$</span>:
+$${\color{orange}\sigma}(\mathcal{R}(X^*)) = \mathcal{R}(X^*). $$
+</span>
+<span class="fragment fade-in-then-out" data-fragment-index="1">
+
+We can restrict the SDP to optimize only over <span style="color:orange">invariant</span> matrices:
+\begin{align}
+\inf\enspace&\langle C,X\rangle \\\\
+\text{s.t.}\enspace& \langle A_i, X\rangle = b_i\quad \text{for all } i,\\\\
+& X\succcurlyeq 0,\\\\
+& {\color{orange}\mathcal{R}(X)=X}.\\\\
+\end{align}
+
+</span>
+<span class="fragment fade-in-then-out" data-fragment-index="2">
+
+In the case of ${\color{orange}G}=D_{10}=C_5\times Z_2$ we can restrict $X$ to have the **pattern**
+
+$$\begin{pmatrix}
+{\color{red}A} & {\color{orange}B} & {\color{green}C} & {\color{green}C} & {\color{orange}B}\\\\
+{\color{orange}B} & {\color{red}A} & {\color{orange}B} & {\color{green}C} & {\color{green}C}\\\\
+{\color{green}C} & {\color{orange}B} & {\color{red}A} & {\color{orange}B} & {\color{green}C}\\\\
+{\color{green}C} & {\color{green}C} & {\color{orange}B} & {\color{red}A} & {\color{orange}B} \\\\
+{\color{orange}B} & {\color{green}C} & {\color{green}C} & {\color{orange}B} & {\color{red}A}\\\\
+\end{pmatrix}$$ 
+</span>
+</div>
+
+----
+
+### Block-diagonalization
+<div class="r-stack">
+
+<span class="fragment fade-out" data-fragment-index="1">
+
+$$\tiny\begin{pmatrix}
+{\color{red}A} & {\color{orange}B} & {\color{green}C} & {\color{green}C} & {\color{orange}B}\\\\
+{\color{orange}B} & {\color{red}A} & {\color{orange}B} & {\color{green}C} & {\color{green}C}\\\\
+{\color{green}C} & {\color{orange}B} & {\color{red}A} & {\color{orange}B} & {\color{green}C}\\\\
+{\color{green}C} & {\color{green}C} & {\color{orange}B} & {\color{red}A} & {\color{orange}B} \\\\
+{\color{orange}B} & {\color{green}C} & {\color{green}C} & {\color{orange}B} & {\color{red}A}\\\\
+\end{pmatrix}
+$$
+
+is positive semidefinite if and only if
+
+* ${\color{red}A} + {\color{orange}B} + {\color{green}C} \geq 0$,
+* ${\color{red}A} +\frac{\sqrt{5}-1}{4}{\color{orange}B} - \frac{\sqrt{5}+1}{4}{\color{green}C} \geq 0$,
+* ${\color{red}A} -\frac{\sqrt{5}+1}{4}{\color{orange}B}+\frac{\sqrt{5}-1}{4}{\color{green}C} \geq 0$.
+
+</span>
+<span class="fragment fade-in" data-fragment-index="1">
+In general we may still get multiple bigger blocks
+
+![](Pic_SymReduc.svg)
+
+but <span style="color:orange">the sum of the block sizes is often significantly lower than $n$!</span>
+
+<span class="fragment fade-in" data-fragment-index="2" style="color:red">
+How do we find the block-diagonalization?
+</span>
+
+</span>
+</div>
+
+Note: This linearizes the problem.
+
+----
+### Irreducible modules
+
+The action of $S_n$ turns $\mathbb{R}[x]$ into an <span style="color:orange">$S_n$-module</span>.
+
+<div class="fragment">
+<div class="r-frame">
+<span style="color:orange">Maschke's theorem:</span> Every module can be decomposed into <span style="color:orange">irreducible submodules</span>:
+
+$$\mathbb{R}[x]_{\leq d} \simeq {\color{orange}m_1}S^{\lambda_1}\oplus {\color{orange}m_2}S^{\lambda_2}\oplus \ldots \oplus {\color{orange}m_k}S^{\lambda_k}.$$
+
+</div>
+</div>
+----
+
+### Symmetry adapted basis
+
+A "<span style="color:orange">nice</span>" basis, which respects the decomposition
+$$\mathbb{R}[x]_{\leq d} \simeq {\color{orange}m_1}S^{\lambda_1}\oplus {\color{orange}m_2}S^{\lambda_2}\oplus \ldots \oplus {\color{orange}m_k}S^{\lambda_k},$$
+
+is called **symmetry adapted basis** of $\mathbb{R}[x]_{\leq d}$.
+
+<br/>
+
+"<span style="color:orange">Nice</span>" essentially means that we choose the same basis in each copy of each $S^{\lambda_i}$.
+
+----
+
+### Block-diagonalization
+
+<span class="r-stack">
+<span class="fragment fade-out" data-fragment-index="1">
+
+Swapping the basis of the SDP to a symmetry adapted basis **block-diagonalizes** the SDP:
+
+
+</span>
+<span class="fragment fade-in" data-fragment-index="1">
+If $\mathbb{R}[x]_{\leq d} \simeq {\color{orange}m_1}S^{\lambda_1}\oplus {\color{orange}m_2}S^{\lambda_2}\oplus \ldots \oplus {\color{orange}m_k}S^{\lambda_k},$
+
+we obtain <span style="color:orange">$k$ different blocks of sizes $\color{orange}m_1, \ldots, m_k$,</span> each appearing with $\dim(S^{\lambda_i})$ identical copies.
+
+
+
+</span>
+</span>
+
+![](Pic_SymReduc.svg)
+
+Note: $G$ acts on the index space of $X$. We can delete the copies.
+
+
+
+---
+## Representation theory of ${\color{orange}S_n}$
+
+![](Pic_YoungTab.svg)
+
+----
+
+### Permutation modules
+
+<span class="r-stack">
+
+<span class="fragment fade-out" data-fragment-index="1">
+
+Let ${\color{orange}\lambda} = (\lambda_1,\ldots, \lambda_m)\in\mathbb{N}^m$ be a **partition** of $n$:
+
+- $\lambda_1 \geq \lambda_2\geq \ldots\geq \lambda_m>0$,
+- $\lambda_1+\ldots+\lambda_m = n$.
+
+</span>
+<span class="fragment fade-in-then-out" data-fragment-index="1">
+
+A **Young-tableau** of *shape* $\color{orange}\lambda$ consists of $n$ boxes, positioned on $m$ rows, with $\color{orange}\lambda_i$ boxes in row $i$, which are filled bijectively with $\\{1,\ldots,n\\}$.
+
+<br/>
+
+![](Pic_YoungTabEx.svg)
+
+is a Young-tableau of shape $\color{orange}{(3,2)}$.
+
+</span>
+<span class="fragment fade-in-then-out" data-fragment-index="2">
+
+A **Young-tabl<ins>oid</ins>** is the *row-equivalence* class of a Young-tableau:
+
+![](Pic_YoungTabloidEx.svg)
+
+</span>
+<span class="fragment fade-in-then-out" data-fragment-index="3">
+
+A **Permutation module** of shape $\color{orange}\lambda$ is the $\color{orange}{S_n}$-module
+
+$$M^{\color{orange}\lambda} := \mathrm{span}_\mathbb{R}\\{ \text{Young-tabloids of shape } {\color{orange}\lambda}\\},$$
+
+where $\color{orange}{S_n}$ acts on the <span style="color:orange">entries</span> of each box individually:
+
+
+![](Pic_PermModEx.svg)
+
+</span>
+
+<span class="fragment fade-in-then-out" data-fragment-index="4">
+
+We know how to <span style="color:orange">decompose</span> Permutation modules into the <span style="color:orange">irreducible</span> Specht-modules.
+
+We can try to first decompose $\mathbb{R}[x]$ into Permutation modules.
+
+</span>
+
+</span>
 
 ---
 
 ## Lasserre style hierarchy
 #### Prioritizing Flags with <span style="color:orange">few edges</span>
 
-<!-- <div class="r-stretch">
 
-![](Pic_SpechtFlags.svg)
-
-</div> -->
-
-<img class="r-stretch" src="Pic_SpechtFlags.svg">
+<!-- 
+<img class="r-stretch" src="Pic_SpechtFlags.svg"> -->
 
 ----
 
@@ -1162,7 +771,7 @@ The vectors $\vartheta_T(e_t) \in M^\lambda$, where $e_t\in S^\mu$ and $\varthet
 
 While we have a lot of structure in some cases, such as $\small\mathcal{R} _ {C_{20}}\left(\mathrm{Hom}\left(S^{(18,1,1)},M^{(1,\ldots,1)}\right)\right): $
 
-<img class="r-stretch" src="RA.png">
+<img class="r-stretch" src="./RA.png">
 
 </div>
 
@@ -1170,7 +779,7 @@ While we have a lot of structure in some cases, such as $\small\mathcal{R} _ {C_
 
 There are usually <span style="color:red">no clear patterns</span> in the Reynolds operators. <span style="color:red">Analytic solutions are unlikely.</span>
 
-<img class="r-stretch" src="RB.png">
+<img class="r-stretch" src="./RB.png">
 
 </div>
 
@@ -1331,7 +940,7 @@ Here, this defines a <span style="color:orange">product</span> between <span sty
 
 <img class="r-stretch" src="Pic_SpechtFlags.svg">
 
-<img class="r-stretch" src="Pic_SpechtFlagEval.svg">
+<!-- <img class="r-stretch" src="Pic_SpechtFlagEval.svg"> -->
 
 <span style="color:orange">If the sizes of the vertex groups differ, this product is zero!</span>
 
@@ -1353,64 +962,43 @@ We can calculate these products efficiently with help of a generalized version o
 
 ----
 
-### Nearly symmetric sums of squares
-
-**Raymond et al.:** Every Specht module $S^{(\lambda_1,\ldots,\lambda_m)}$ has an element <span style="color:orange">invariant under $S_{\lambda_1}$.</span>
-
-This tells us that we get a hierarchy <span style="color:orange">equivalent to Lasserre's</span> by optimizing over an SDP indexed by <span style="color:orange">Flags with at most $2d$ labels.</span>
-
-----
-
 ### Prioritizing small graphs
 
 <div class="r-stack">
 
 <!-- STACK 1 -->
-<div class="fragment fade-out" data-fragment-index="1">
+<div class="fragment fade-out" data-fragment-index="2">
 
 **Razborov** prioritizes Flags with <span style="color:orange">few vertices</span>. Let $\color{green}T$ be the maximum number of vertices we want to appear. 
+
+<div class="fragment" data-fragment-index="1">
+<div class="r-frame">
+We optimize over sums of squares
+$$\sum p_i^2, $$
+where <span style="color:orange">each square</span> $p_i^2$ does not contain a monomial with more than $\color{green}T$ vertices.
+</div>
+</div>
 
 </div>
 <!-- STACK 2 -->
 
-<div class="fragment fade-in-then-out" data-fragment-index="1">
-The $\color{green}T$'th level of Razborov's hierarchy is equivalent to optimizing over
+<div class="fragment fade-in-then-out" data-fragment-index="2">
+We optimize over
 
 $${\color{red}[x]}^T X  {\color{red}[x]},$$
 
-where ${\color{red}[x]}$ contains Flags with $\color{orange}a$ labels in $\\{1,\ldots, {\color{green}T}\\}$ and at most $\lfloor ({\color{green}T}-{\color{orange}a}) / 2\rfloor$ unlabeled vertices.
+where ${\color{red}[x]}$ contains monomials with at most ${\color{green}T}$ vertices, where $X$ has a <span style="color:orange">rank one decomposition</span>
+$$X = X_1 + \ldots + X_k,$$
+where each ${\color{red}[x]}^T X_i  {\color{red}[x]}$ is a linear combination of graphs with at most $\color{green}T$ vertices.
 
-<span style="color:orange">Additionally we need another decomposition condition.</span>
 </div>
 
 <!-- STACK 3 -->
-<div class="fragment fade-out" data-fragment-index="4">
-<div class="fragment fade-in" data-fragment-index="2">
-
-
-We require that $X$ can be decomposed into a <span style="color:orange">sum over rank $1$-matrices</span>
-$$X = X_1 + \ldots + X_k\quad\text{for some $k$},$$
-where each ${\color{red}[x]}^T X_i  {\color{red}[x]}$ contains no graph with more than ${\color{green}T}$ vertices.
-
-
-<div class="fragment" data-fragment-index="3">
+<div class="fragment fade-in" data-fragment-index="3">
 
 The $X_i$ correspond exactly to the <span style="color:orange">maximal 
-cliques</span> in the enforced sparsity pattern!
-
-</div>
-
-</div>
-
-</div>
-
-<!-- STACK 4 -->
-
-<div class="fragment fade-in" data-fragment-index="4">
-
-The sparsity pattern in the case ${\color{green}T}=4$:
-
-![](RazborovSparsity.png)
+cliques</span> in the sparsity pattern given by
+$$ (X_i)_{G,H} = 0 \quad\text{if $GH$ has more than $\color{green}T$ vertices}.$$
 
 </div>
 
@@ -1421,10 +1009,16 @@ The sparsity pattern in the case ${\color{green}T}=4$:
 
 ### The maximal cliques
 
-Up to symmetry, we obtain a maximal clique for each integer $S\in\\{1,\ldots,{\color{green}T}\\}$ with $S\mod 2 \equiv T$. In the case ${\color{green}T}=4$ these are:
+Up to symmetry, we obtain a maximal clique for each integer ${\color{orange}K}\in\\{1,\ldots,{\color{green}T}\\} = [{\color{green}T}]$ with $S\enspace\mathrm{mod}\enspace 2 \equiv {\color{green}T}.$
 
-![](Pic_MaxCliques.svg)
+<div class="fragment">
+The maximal clique $\mathcal{B}_{\color{orange}K}$ is given by the graphs with at most $\color{orange}K$ vertices in $[{\color{green}T}]$ and at most $\frac{{\color{green}T} - {\color{orange}K}}{2}$ in $[n]\setminus [{\color{green}T}]$.
 
+</div>
+
+<div class="fragment" >
+Each clique's block has <span style="color:orange">symmetry</span> $S_{\color{orange}K}\times S_{n-{\color{orange}K}}.$
+</div>
 
 ----
 ### Breaking Schur's Lemma
@@ -1457,14 +1051,15 @@ Both modules are <span style="color:orange">isomorphic</span> to the module $M^{
 
 <div class="fragment fade-in" data-fragment-index="3">
 
-We obtain <span style="color:orange">one block for each graph with up to $\color{green}T$ vertices</span> by applying a <span style="color:orange">Möbius transformation</span> on the labeled vertices.
+We obtain <span style="color:orange">one block for each graph $\color{green}G$ with up to $\color{green}T$ vertices</span> by applying a <span style="color:orange">Möbius transformation</span> on the labeled vertices.
 
 
 <div class="fragment" data-fragment-index="4">
-The symmetries of each block are given by the <span style="color:orange">automorphism group</span> of the corresponding graph. <span style="color:red">The symmetry groups are not $S_n$ anymore!</span>
-</div>
+The symmetries of each block are now given by
+$$\mathrm{Aut}({\color{green}G}) \times S_{n-|V({\color{green}G})|} $$
+<span style="color:red">The symmetry groups are not $S_K\times S_{n-K}$ anymore!</span>
 
-<br/>
+</div>
 
 <div class="fragment" data-fragment-index="5">
 We can still exploit them computationally with the <span style="color:orange">Jordan reduction method.</span>
@@ -1479,11 +1074,11 @@ We can still exploit them computationally with the <span style="color:orange">Jo
 
 In the setting of (undirected) graphs we have 
   \begin{equation}
-    \mathrm{Las}_{2{\color{orange}d}} \geq \mathrm{Raz} _{4{\color{orange}d}}
+    \mathrm{Las}_{2{\color{orange}d}} \geq \mathrm{Vert} _{4{\color{orange}d}}
   \end{equation}
   and
   \begin{equation}
-    \mathrm{Raz} _{\color{green}T} \geq \mathrm{Las} _{2\binom{{\color{green}T}}{2}},
+    \mathrm{Vert} _{\color{green}T} \geq \mathrm{Las} _{2\binom{{\color{green}T}}{2}},
   \end{equation}
 where <span style="color:orange">lower means better</span>.
 ---
@@ -1502,9 +1097,9 @@ $$\left\lbrace (p(\mathcal{G}, {\color{orange}G} ), p(\mathcal{G}, {\color{green
 </div>
 <div class="fragment fade-in-then-out" data-fragment-index="1">
 
-<span style="color:orange">Razborov</span> calculates the <span style="color:orange">triangle</span>-<span style="color:green">edge</span> graph profile [Graphic by <span style="color:orange">Blekherman, Raymond, Singh, Thomas</span>]:
+<span style="color:orange">Razborov</span> calculates the <span style="color:orange">triangle</span>-<span style="color:green">edge</span> graph profile:
 
-<img src="TriangleProfile.png" width="322" height="282">
+<img src="./TriangleProfile.png" width="675" height="450">
 
 <!-- <img class="plain" src="TriangleProfile.png"> -->
 
@@ -1526,10 +1121,7 @@ for a lower bound, where $f$ is a <span style="color:orange">univariate</span> p
 <div class="fragment fade-in-then-out" data-fragment-index="3">
 
 One function is not enough:
-
-<center>
-<iframe data-src="Pic_ProfileProblem.html" width="800" height="600" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="margin-bottom:5px; display:block;" ></iframe>
-<center/>
+<img src="./TriangleProfileApprox.png" width="675" height="450">
 
 </div>
 <div class="fragment fade-in" data-fragment-index="4">
@@ -1537,41 +1129,29 @@ One function is not enough:
 
 Cutting $[0,1]$ into many intervals works well:
 
-<center>
-<iframe data-src="Pic_ProfileSolution.html" width="800" height="600" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="margin-bottom:5px; display:block;" ></iframe>
-<center/>
+<img src="./TriangleProfileSteps.png" width="675" height="450">
+
 
 </div>
 </div>
+
+Note: Very few known; edge + Kn, some approximations of slices of profile of small graphs.
 
 ----
 
 
-<img class="r-stretch" src="./graphProfilesMatrix.png">
+<img class="r-stretch" src="./GraphProfiles.png">
 
 ----
 
 ## Harmonic Flags
 
-<center>
-<iframe data-src="Pic_ProfileP2E.html" width="800" height="600" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="margin-bottom:5px; display:block;" ></iframe>
-<center/>
+We found a basis of the Flag-Algebra of elements we call <span style="color:orange">harmonic Flags</span>. These come from the <span style="color:orange">characters of the binary hypercube</span>, and are a basis of <span style="color:orange">limits of orthogonal polynomials</span>.
 
 ----
 
-## Harmonic Flags
 
-<center>
-<iframe data-src="Pic_ProfileP3E.html" width="800" height="600" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="margin-bottom:5px; display:block;" ></iframe>
-<center/>
-
-
-
-
-
-
-
-
+<img class="r-stretch" src="./GraphProfilesHarmonic.png">
 
 
 ---
