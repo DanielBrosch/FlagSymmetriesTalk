@@ -1009,10 +1009,10 @@ $$ (X_i)_{G,H} = 0 \quad\text{if $GH$ has more than $\color{green}T$ vertices}.$
 
 ### The maximal cliques
 
-Up to symmetry, we obtain a maximal clique for each integer ${\color{orange}K}\in\\{1,\ldots,{\color{green}T}\\} = [{\color{green}T}]$ with $S\enspace\mathrm{mod}\enspace 2 \equiv {\color{green}T}.$
+Up to symmetry, we obtain a maximal clique for each integer ${\color{orange}K}\in\\{1,\ldots,{\color{green}T}\\} = [{\color{green}T}]$ with ${\color{orange}K}\enspace\mathrm{mod}\enspace 2 \equiv {\color{green}T}.$
 
 <div class="fragment">
-The maximal clique $\mathcal{B}_{\color{orange}K}$ is given by the graphs with at most $\color{orange}K$ vertices in $[{\color{green}T}]$ and at most $\frac{{\color{green}T} - {\color{orange}K}}{2}$ in $[n]\setminus [{\color{green}T}]$.
+The maximal clique $\mathcal{B}_{\color{orange}K}$ is given by the graphs with at most $\color{orange}K$ vertices in $[{\color{orange}K}]$ and at most $\frac{{\color{green}T} - {\color{orange}K}}{2}$ vertices in $[n]\setminus [{\color{orange}K}]$.
 
 </div>
 
@@ -1062,7 +1062,7 @@ $$\mathrm{Aut}({\color{green}G}) \times S_{n-|V({\color{green}G})|} $$
 </div>
 
 <div class="fragment" data-fragment-index="5">
-We can still exploit them computationally with the <span style="color:orange">Jordan reduction method.</span>
+We can still block-diagonalize the algebra numerically.
 </div>
 
 </div>
@@ -1070,15 +1070,24 @@ We can still exploit them computationally with the <span style="color:orange">Jo
 
 ----
 
+### Connection to Razborov's hierarchy
+
+We obtain blocks for each Graph ${\color{green}G}$ with symmetry
+$$\mathrm{Aut}({\color{green}G}) \times S_{n-|V({\color{green}G})|}. $$
+
+We obtain the <span style="color:orange">Flag Algebra $\mathcal{A}^{\color{green}G}$ of <span style="color:orange">type</span> ${\color{green}G}$, by restricting</span> to the elements invariant under 
+$$S_{n-|V({\color{green}G})|}.$$
+----
+
 ### Comparing the hierarchies
 
 In the setting of (undirected) graphs we have 
   \begin{equation}
-    \mathrm{Las}_{2{\color{orange}d}} \geq \mathrm{Vert} _{4{\color{orange}d}}
+    \mathrm{Las}_{2{\color{orange}d}} \geq \mathrm{Vert} _{4{\color{orange}d}} \geq \mathrm{Raz} _{8\color{orange}d}
   \end{equation}
   and
   \begin{equation}
-    \mathrm{Vert} _{\color{green}T} \geq \mathrm{Las} _{2\binom{{\color{green}T}}{2}},
+    \mathrm{Raz} _{\color{green}T} \geq \mathrm{Vert} _{\color{green}T} \geq \mathrm{Las} _{2\binom{{\color{green}T}}{2}},
   \end{equation}
 where <span style="color:orange">lower means better</span>.
 ---
