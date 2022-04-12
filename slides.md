@@ -1075,7 +1075,7 @@ We can still block-diagonalize the algebra numerically.
 We obtain blocks for each Graph ${\color{green}G}$ with symmetry
 $$\mathrm{Aut}({\color{green}G}) \times S_{n-|V({\color{green}G})|}. $$
 
-We obtain the <span style="color:orange">Flag Algebra $\mathcal{A}^{\color{green}G}$ of <span style="color:orange">type</span> ${\color{green}G}$, by restricting</span> to the elements invariant under 
+We obtain the <span style="color:orange">Flag Algebra $\mathcal{A}^{\color{green}G}$ of <span style="color:orange">type</span> ${\color{green}G}$ </span>by restricting to the elements invariant under 
 $$S_{n-|V({\color{green}G})|}.$$
 ----
 
@@ -1083,7 +1083,7 @@ $$S_{n-|V({\color{green}G})|}.$$
 
 In the setting of (undirected) graphs we have 
   \begin{equation}
-    \mathrm{Las}_{2{\color{orange}d}} \geq \mathrm{Vert} _{4{\color{orange}d}} \geq \mathrm{Raz} _{8\color{orange}d}
+    \mathrm{Las}_{2{\color{orange}d}} \geq \mathrm{Raz} _{4\color{orange}d}\geq  \mathrm{Vert} _{4{\color{orange}d}}
   \end{equation}
   and
   \begin{equation}
