@@ -14,7 +14,7 @@ $$\require{color}$$
 #### Tilburg University
 
 <br/>
-April 12, 2022
+May 24, 2022
 
 ---
 
@@ -120,7 +120,7 @@ These relationships are <span style="color:orange">independent of $\mathcal{G}$<
 
 ![](Pic_DensityProductNoP.svg)
 
-where a graph $H$ now stand for the function
+where a graph $H$ now stands for the function
 $$H:\mathcal{G}\mapsto p(\mathcal{G},H).$$
 </div>
 <div class="fragment fade-in" data-fragment-index="3">
@@ -760,11 +760,11 @@ We know that a basis of $\mathrm{Hom}(S^\mu,M^\lambda)$ is given by homomorphism
 <div class="r-stack">
 <div class="fragment fade-out" data-fragment-index="2">
 
-The vectors $\vartheta_T(e_t) \in M^\lambda$, where $e_t\in S^\mu$ and $\vartheta_T \in \mathrm{Hom}(S^\mu,M^\lambda)$, get <span style="color:red">extremely long</span>. In small cases we can already reach more than <span style="color:red">$100.000.000$ nonzero coefficients</span>.
+Both $M^\lambda$ and $M^\lambda / G$ are <span style="color:red">high dimensional</span>. In small cases we can already reach more than <span style="color:red">$100.000.000$ nonzero coefficients</span> for vectors representing homomorphisms in $\mathrm{Hom}(S^\mu,M^\lambda / G)$.
 
 <br/>
 
-<span style="color:red">We cannot work with the vectors explicitly!</span><!-- .element: class="fragment" data-fragment-index="1"-->
+<span style="color:red">We cannot work with the vectors explicitly, or use Serre's algorithm!</span><!-- .element: class="fragment" data-fragment-index="1"-->
 
 </div>
 <div class="fragment fade-in-then-out" data-fragment-index="2">
