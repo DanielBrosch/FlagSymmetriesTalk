@@ -7,7 +7,7 @@ from manim_revealjs import *
 class FixedEndsLine(Line):
     def __init__(self, start=LEFT, end=RIGHT, buff=0, path_arc=None, **kwargs):
         super().__init__(start, end, buff, path_arc, **kwargs)
-        self.add_updater(lambda e:         e.put_start_and_end_on(start.get_center(), end.get_center()))
+        self.add_updater(lambda e:e.put_start_and_end_on(start.get_center(), end.get_center()))
 
 class Triangle2(PresentationScene):
     # CONFIG={
@@ -15,6 +15,7 @@ class Triangle2(PresentationScene):
 	# }
     def construct(self):
 
+        self.next_section(skip_animations=True)
         self.camera.background_color = "#111"
         # self.add(ScreenRectangle(fill_color=RED))
 
@@ -168,6 +169,8 @@ class Triangle2(PresentationScene):
         self.play(Transform(right1, right4))
         # self.wait()      
         self.end_fragment()
+        
+        self.next_section(skip_animations=False)
 
         limit = MathTex(r"\to \frac{1}{2}\text{ as } n\to\infty").next_to(right4, DOWN).set_color(ORANGE)
         self.play(Write(limit))
